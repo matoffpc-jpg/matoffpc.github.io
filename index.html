@@ -3,44 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    
-    <!-- SEO Мета-теги -->
     <title>Matoff PC | Сборка и ремонт компьютеров в Нижнем Новгороде</title>
+    <!-- SEO метатеги -->
     <meta name="description" content="Профессиональная сборка и ремонт компьютеров в Нижнем Новгороде. Индивидуальные ПК под любые задачи. Апгрейд, настройка, доставка по РФ. Гарантия 1 год.">
-    <meta name="keywords" content="сборка пк, ремонт компьютеров, компьютерная мастерская, игровой компьютер, апгрейд ПК, Нижний Новгород, компьютерная помощь">
+    <meta name="keywords" content="сборка пк, ремонт компьютеров, компьютерная мастерская, игровой компьютер, апгрейд ПК, Нижний Новгород">
     <meta name="author" content="Matoff PC">
-    <meta name="copyright" content="Matoff PC">
     <meta name="robots" content="index, follow">
-    <meta name="language" content="Russian">
-    <meta name="geo.region" content="RU-NIZ">
-    <meta name="geo.placename" content="Нижний Новгород">
-    
-    <!-- Open Graph для соцсетей -->
     <meta property="og:title" content="Matoff PC | Сборка и ремонт компьютеров в Нижнем Новгороде">
     <meta property="og:description" content="Профессиональная сборка и ремонт компьютеров. Индивидуальные ПК под любые задачи. Гарантия 1 год.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://matoffpc-jpg.github.io">
+    <meta property="og:url" content="https://matoffpc.ru">
     <meta property="og:image" content="https://matoffpc-jpg.github.io/favicon.png">
     <meta property="og:site_name" content="Matoff PC">
-    <meta property="og:locale" content="ru_RU">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_library">
-    <meta name="twitter:title" content="Matoff PC | Сборка и ремонт компьютеров">
-    <meta name="twitter:description" content="Профессиональная сборка и ремонт компьютеров в Нижнем Новгороде">
-    <meta name="twitter:image" content="https://matoffpc-jpg.github.io/favicon.png">
-    
     <!-- Фавиконка -->
     <link rel="icon" type="image/png" href="https://matoffpc-jpg.github.io/favicon.png">
     <link rel="apple-touch-icon" href="https://matoffpc-jpg.github.io/favicon.png">
-    
-    <!-- Schema.org разметка для организации -->
+    <!-- Schema.org -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ComputerStore",
       "name": "Matoff PC",
-      "url": "https://matoffpc-jpg.github.io",
+      "url": "https://matoffpc.ru",
       "logo": "https://matoffpc-jpg.github.io/favicon.png",
       "description": "Профессиональная сборка и ремонт компьютеров в Нижнем Новгороде",
       "address": {
@@ -49,11 +33,9 @@
         "addressCountry": "RU"
       },
       "openingHours": "Mo-Su 10:00-22:00",
-      "telephone": "+7 (999) 999-99-99",
       "priceRange": "₽₽"
     }
     </script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -151,12 +133,97 @@
         .scroll-top { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; border-radius: 50%; background: var(--accent-purple); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 24px; z-index: 99; opacity: 0; visibility: hidden; transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .scroll-top.show { opacity: 1; visibility: visible; }
         .scroll-top:hover { transform: scale(1.1); }
-        .hero { padding: 80px 0 60px 0; }
-        .hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .hero-image { width: 100%; max-width: 900px; border-radius: 32px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.4); border: 1px solid var(--border-color); transition: transform 0.3s; }
-        .hero-image img { width: 100%; height: auto; display: block; object-fit: cover; }
-        .hero-image:hover { transform: translateY(-5px); box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
-        .hero-text { margin-top: 30px; font-size: 1.2rem; color: var(--text-secondary); max-width: 700px; }
+        /* HERO СЛАЙДЕР */
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slider-slide {
+            flex-shrink: 0;
+            width: 100%;
+            position: relative;
+        }
+        .slider-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            max-height: 500px;
+        }
+        .slider-caption {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .slider-caption h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .slider-caption p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 10;
+            transition: 0.2s;
+        }
+        .slider-btn:hover { background: var(--accent-purple); }
+        .slider-prev { left: 20px; }
+        .slider-next { right: 20px; }
+        .slider-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 10;
+        }
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+        }
+        .slider-dot.active { background: var(--accent-purple); }
+        @media (max-width: 768px) {
+            .slider-caption h2 { font-size: 1.2rem; }
+            .slider-caption p { font-size: 0.8rem; }
+            .slider-btn { width: 30px; height: 30px; font-size: 14px; }
+        }
+        .hero-text { margin-top: 30px; font-size: 1.2rem; color: var(--text-secondary); max-width: 700px; text-align: center; margin-left: auto; margin-right: auto; }
         section { padding: 90px 0; }
         .section-title { font-family: 'Orbitron', monospace; font-size: 2.5rem; font-weight: 700; margin-bottom: 60px; text-align: center; letter-spacing: -0.02em; }
         .section-title span { background: linear-gradient(120deg, var(--accent-purple), var(--accent-orange)); background-clip: text; -webkit-background-clip: text; color: transparent; position: relative; }
@@ -272,7 +339,7 @@
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; z-index: 1000; }
         .modal-content { background: #16161c; padding: 40px; border-radius: 40px; text-align: center; min-width: 300px; border: 1px solid var(--accent-purple); }
         @media (max-width: 1000px) { .services-grid, .builds-grid, .steps-grid, .advantages-grid, .reviews-grid, .counters-grid { grid-template-columns: repeat(2, 1fr); } .section-title { font-size: 2rem; } .short-card { width: 240px; } .chat-window { width: 300px; right: 20px; bottom: 90px; } .social-icon { padding: 10px 20px; min-width: 110px; font-size: 0.85rem; } }
-        @media (max-width: 768px) { .container { padding: 0 20px; } .header .container { flex-direction: column; padding: 15px 20px; gap: 15px; } .nav { justify-content: center; gap: 20px; } .nav a { font-size: 0.85rem; } .logo { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } section { padding: 60px 0; } .hero { padding: 40px 0 30px 0; } .short-card { width: 200px; } .chat-window { width: 280px; right: 10px; bottom: 80px; height: 450px; } .social-icons { gap: 15px; } .social-icon { padding: 8px 16px; min-width: 90px; font-size: 0.75rem; } .counters-grid { grid-template-columns: 1fr; gap: 20px; } .promo-text { font-size: 0.8rem; } .promo-timer { font-size: 0.9rem; padding: 5px 12px; } .calculator-filters { grid-template-columns: 1fr; } .scroll-top { bottom: 20px; left: 20px; width: 40px; height: 40px; font-size: 20px; } .pc-image-container { height: 180px; } .review-image { height: 140px; } }
+        @media (max-width: 768px) { .container { padding: 0 20px; } .header .container { flex-direction: column; padding: 15px 20px; gap: 15px; } .nav { justify-content: center; gap: 20px; } .nav a { font-size: 0.85rem; } .logo { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } section { padding: 60px 0; } .hero-slider { border-radius: 20px; } .slider-caption { padding: 10px; } .slider-caption h2 { font-size: 1rem; } .slider-caption p { font-size: 0.7rem; } .short-card { width: 200px; } .chat-window { width: 280px; right: 10px; bottom: 80px; height: 450px; } .social-icons { gap: 15px; } .social-icon { padding: 8px 16px; min-width: 90px; font-size: 0.75rem; } .counters-grid { grid-template-columns: 1fr; gap: 20px; } .promo-text { font-size: 0.8rem; } .promo-timer { font-size: 0.9rem; padding: 5px 12px; } .calculator-filters { grid-template-columns: 1fr; } .scroll-top { bottom: 20px; left: 20px; width: 40px; height: 40px; font-size: 20px; } .pc-image-container { height: 180px; } .review-image { height: 140px; } }
         @media (max-width: 640px) { .services-grid, .builds-grid, .steps-grid, .advantages-grid, .reviews-grid { grid-template-columns: 1fr; } .logo { font-size: 1.4rem; } .short-card { width: 160px; } .chat-window { width: calc(100% - 20px); right: 10px; left: 10px; height: 500px; bottom: 80px; } .chat-button { bottom: 20px; right: 20px; } .social-icons { gap: 12px; } .social-icon { padding: 6px 12px; min-width: 70px; font-size: 0.7rem; } .pc-image-container { height: 160px; } .review-image { height: 120px; } .not-found-block { padding: 30px 20px; } .not-found-block h3 { font-size: 1.5rem; } }
     </style>
 </head>
@@ -281,7 +348,25 @@
 <div id="promoBar" class="promo-bar" style="display: none;"><div class="container"><div class="promo-content"><span class="promo-text" id="promoText"></span><span class="promo-timer" id="promoTimer"></span><button class="promo-close" id="promoClose">✕</button></div></div></div>
 <header class="header"><div class="container"><div class="logo"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></div><div class="nav"><a href="#services">Услуги</a><a href="#builds">Сборки</a><a href="#steps">Этапы</a><a href="#advantages">Преимущества</a><a href="#reviews">Отзывы</a><a href="#order">Заявка</a><div class="theme-toggle" id="themeToggle"><span class="active" data-theme="dark">🌙</span><span data-theme="light">☀️</span></div><div class="manager-wrapper"><button id="managerHeaderBtn" class="manager-header-btn">📱 Связаться</button><div class="online-indicator"><span class="online-dot"></span><span>онлайн</span></div></div></div></div></header>
 <main>
-    <section class="hero"><div class="container"><div class="hero-content fade-up"><div class="hero-image"><img id="heroImage" src="https://placehold.co/1200x500/1a1a2a/9b4dff?text=Matoff+PC" alt="Matoff PC"></div><div class="hero-text"><p>✨ Профессиональная сборка, ремонт и апгрейд компьютеров в Нижнем Новгороде ✨</p></div></div></div></section>
+    <!-- HERO СЛАЙДЕР -->
+    <section class="hero" style="padding: 40px 0 20px 0;">
+        <div class="container">
+            <div class="hero-slider" id="heroSlider">
+                <div class="slider-container">
+                    <div class="slider-track" id="sliderTrack">
+                        <!-- Слайды будут загружены из data.json -->
+                    </div>
+                    <button class="slider-btn slider-prev" id="sliderPrev">❮</button>
+                    <button class="slider-btn slider-next" id="sliderNext">❯</button>
+                    <div class="slider-dots" id="sliderDots"></div>
+                </div>
+            </div>
+            <div class="hero-text">
+                <p>✨ Профессиональная сборка, ремонт и апгрейд компьютеров в Нижнем Новгороде ✨</p>
+            </div>
+        </div>
+    </section>
+
     <section id="counters"><div class="container"><h2 class="section-title fade-up">Matoff PC <span>в цифрах</span></h2><div class="counters-grid" id="countersContainer"></div></div></section>
     <section id="services"><div class="container"><h2 class="section-title fade-up">Наши <span>услуги</span></h2><div id="servicesContainer" class="services-grid"></div></div></section>
     <section id="builds"><div class="container"><h2 class="section-title fade-up">Лучшее <span>решение</span> для вас</h2><div class="filter-buttons" id="filterGroup"><button class="filter-btn active" data-filter="all">Все</button><button class="filter-btn" data-filter="low">до 100 000 ₽</button><button class="filter-btn" data-filter="mid">100 000 – 200 000 ₽</button><button class="filter-btn" data-filter="high">от 200 000 ₽</button></div><div class="filter-buttons" id="gpuFilterGroup"><button class="filter-btn active" data-gpu="all">Все видеокарты</button><button class="filter-btn" data-gpu="nvidia">NVIDIA</button><button class="filter-btn" data-gpu="amd">AMD</button></div><div id="buildsContainer" class="builds-grid"></div></div></section>
@@ -315,10 +400,54 @@
             if (!response.ok) throw new Error('Ошибка загрузки data.json');
             siteData = await response.json();
             renderAll();
+            initSlider();
         } catch(e) {
             console.error(e);
             document.getElementById('servicesContainer').innerHTML = '<div style="text-align:center;padding:40px;">❌ Ошибка загрузки данных. Проверьте файл data.json</div>';
         }
+    }
+
+    function initSlider() {
+        const slides = siteData.slides || [];
+        if (slides.length === 0) return;
+        
+        const track = document.getElementById('sliderTrack');
+        const dotsContainer = document.getElementById('sliderDots');
+        let currentIndex = 0;
+        let interval;
+        
+        track.innerHTML = slides.map(slide => `
+            <div class="slider-slide">
+                <img src="${slide.image}" alt="${slide.title || 'Слайд'}">
+                <div class="slider-caption">
+                    <h2>${slide.title || ''}</h2>
+                    <p>${slide.subtitle || ''}</p>
+                    ${slide.buttonText && slide.buttonLink ? `<a href="${slide.buttonLink}" class="btn" style="margin-top:10px; display:inline-block;">${slide.buttonText}</a>` : ''}
+                </div>
+            </div>
+        `).join('');
+        
+        dotsContainer.innerHTML = slides.map((_, i) => `<div class="slider-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>`).join('');
+        
+        function updateSlider() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            document.querySelectorAll('.slider-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+        }
+        
+        function nextSlide() { currentIndex = (currentIndex + 1) % slides.length; updateSlider(); }
+        function prevSlide() { currentIndex = (currentIndex - 1 + slides.length) % slides.length; updateSlider(); }
+        
+        document.getElementById('sliderNext').onclick = () => { nextSlide(); resetInterval(); };
+        document.getElementById('sliderPrev').onclick = () => { prevSlide(); resetInterval(); };
+        document.querySelectorAll('.slider-dot').forEach(dot => {
+            dot.onclick = () => { currentIndex = parseInt(dot.dataset.index); updateSlider(); resetInterval(); };
+        });
+        
+        function startInterval() { interval = setInterval(nextSlide, 5000); }
+        function resetInterval() { clearInterval(interval); startInterval(); }
+        startInterval();
     }
 
     function getSpecIcon(spec) {
@@ -385,7 +514,7 @@
             filtered.sort((a,b) => a.price - b.price);
             let selected = filtered[0];
             let resultDiv = document.getElementById('calculatorResult');
-            if(selected) resultDiv.innerHTML = `<div style="background:rgba(0,0,0,0.2);border-radius:24px;padding:20px;"><h3 style="color:#9b4dff;text-align:center;">✅ Рекомендуемая сборка</h3><div style="display:flex;flex-wrap:wrap;gap:25px;align-items:flex-start;justify-content:center;"><div><img src="${selected.image}" style="width:350px;border-radius:20px;"></div><div><h2>${selected.name}</h2><div class="price" style="font-size:1.8rem;">${selected.priceText}</div><div class="fps-block"><div class="fps-title">🎮 FPS (УЛЬТРА)</div><div class="fps-value">${selected.fps}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${selected.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><button class="btn" onclick="scrollToOrder()">📝 Оставить заявку</button></div></div></div>`;
+            if(selected) resultDiv.innerHTML = `<div style="background:rgba(0,0,0,0.2);border-radius:24px;padding:20px;"><h3 style="color:#9b4dff;text-align:center;">✅ Рекомендуемая сборка</h3><div style="display:flex;flex-wrap:wrap;gap:25px;align-items:flex-start;justify-content:center;"><div><img src="${selected.image}" style="width:400px;border-radius:20px;"></div><div><h2>${selected.name}</h2><div class="price" style="font-size:1.8rem;">${selected.priceText}</div><div class="fps-block"><div class="fps-title">🎮 FPS (УЛЬТРА)</div><div class="fps-value">${selected.fps}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${selected.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><button class="btn" onclick="scrollToOrder()">📝 Оставить заявку</button></div></div></div>`;
             else resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>🤔 Не нашли подходящую сборку. Напишите нам!</p><button class="btn" onclick="scrollToOrder()">Связаться</button></div>`;
         };
     }
