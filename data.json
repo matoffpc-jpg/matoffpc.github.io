@@ -157,3 +157,26 @@
     { "title": "Советы по апгрейду", "url": "https://www.youtube.com/shorts/1ExLJyKc-1E", "preview": "https://img.youtube.com/vi/1ExLJyKc-1E/hqdefault.jpg" }
   ]
 }
+"slides": [
+  {
+    "image": "https://matoffpc-jpg.github.io/slide1.jpg",
+    "title": "Скидка 10% на первую сборку!",
+    "subtitle": "Акция действует до конца месяца",
+    "buttonText": "Узнать подробнее",
+    "buttonLink": "#order"
+  },
+  {
+    "image": "https://matoffpc-jpg.github.io/slide2.jpg",
+    "title": "Розыгрыш игрового ПК",
+    "subtitle": "Участвуй и выиграй!",
+    "buttonText": "Участвовать",
+    "buttonLink": "https://t.me/matoffpctg"
+  },
+  {
+    "image": "https://matoffpc-jpg.github.io/slide3.jpg",
+    "title": "Бесплатная консультация",
+    "subtitle": "Поможем выбрать идеальную сборку",
+    "buttonText": "Записаться",
+    "buttonLink": "#order"
+  }
+]
