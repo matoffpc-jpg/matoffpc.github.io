@@ -1,21 +1,21 @@
 {
-  "slides": [
+    "slides": [
     {
-      "image": "https://matoffpc-jpg.github.io/slide1.jpg",
+      "image": "https://matoffpc-jpg.github.io/slide1.png",
       "title": "Скидка 10% на первую сборку!",
       "subtitle": "Акция действует до конца месяца",
       "buttonText": "Узнать подробнее",
       "buttonLink": "#order"
     },
     {
-      "image": "https://matoffpc-jpg.github.io/slide2.jpg",
+      "image": "https://matoffpc-jpg.github.io/slide2.png",
       "title": "Розыгрыш игрового ПК",
       "subtitle": "Участвуй и выиграй!",
       "buttonText": "Участвовать",
       "buttonLink": "https://t.me/matoffpctg"
     },
     {
-      "image": "https://matoffpc-jpg.github.io/slide3.jpg",
+      "image": "https://matoffpc-jpg.github.io/slide3.png",
       "title": "Бесплатная консультация",
       "subtitle": "Поможем выбрать идеальную сборку",
       "buttonText": "Записаться",
