@@ -1,25 +1,25 @@
 {
     "slides": [
     {
-      "image": "https://matoffpc-jpg.github.io/slide1.png",
+      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/slide1.png",
       "title": "Скидка 10% на первую сборку!",
       "subtitle": "Акция действует до конца месяца",
       "buttonText": "Узнать подробнее",
       "buttonLink": "#order"
     },
     {
-      "image": "https://matoffpc-jpg.github.io/slide2.png",
-      "title": "Розыгрыш игрового ПК",
+      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/slide2.png",
+      "title": "Розыгрыш игровой мышки!",
       "subtitle": "Участвуй и выиграй!",
       "buttonText": "Участвовать",
       "buttonLink": "https://t.me/matoffpctg"
     },
     {
-      "image": "https://matoffpc-jpg.github.io/slide3.png",
-      "title": "Бесплатная консультация",
-      "subtitle": "Поможем выбрать идеальную сборку",
-      "buttonText": "Записаться",
-      "buttonLink": "#order"
+      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/slide3.png",
+      "title": "Розыгрыш игрового коврика!",
+      "subtitle": "Участвуй и выиграй!",
+      "buttonText": "Участвовать",
+      "buttonLink": "https://t.me/matoffpctg"
     }
   ],
   "services": [
@@ -155,8 +155,8 @@
     { "name": "Василиса", "text": "Эти ребята лучшие!! Доступно объяснили принципы сборки. Спасибо!", "image": "https://placehold.co/400x300/2a2a35/9b4dff?text=Фото+ПК" }
   ],
   "counters": [
-    { "number": 500, "label": "Собранных ПК" },
-    { "number": 1000, "label": "Довольных клиентов" },
+    { "number": 528, "label": "Собранных ПК" },
+    { "number": 1043, "label": "Довольных клиентов" },
     { "number": 4, "label": "Года на рынке" }
   ],
   "promo": { "text": "🎁 Скидка 10% на первую сборку!", "endDate": "2026-12-31", "enabled": true },
