@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Matoff PC | Сборка и ремонт компьютеров в Нижнем Новгороде</title>
+    <!-- Фавиконка (иконка во вкладке браузера) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%239b4dff'/%3E%3Ctext x='50' y='67' font-size='60' text-anchor='middle' fill='white' font-family='Arial'%3EMP%3C/text%3E%3C/svg%3E">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         /* ==================== ПЕРЕМЕННЫЕ (ТЁМНАЯ ТЕМА ПО УМОЛЧАНИЮ) ==================== */
@@ -29,7 +31,6 @@
             --fps-bg: rgba(0,0,0,0.3);
             --fps-border: rgba(255,170,68,0.3);
             --fps-text: #fff;
-            --tg-theme: 1; /* 1 = тёмная тема для Telegram */
         }
 
         /* СВЕТЛАЯ ТЕМА */
@@ -53,7 +54,6 @@
             --fps-bg: rgba(230,138,46,0.1);
             --fps-border: rgba(230,138,46,0.5);
             --fps-text: #e68a2e;
-            --tg-theme: 0; /* 0 = светлая тема для Telegram */
         }
 
         * {
@@ -237,9 +237,9 @@
         }
         
         .logo {
-            font-family: 'ObitaemOstrov', 'Inter', monospace;
+            font-family: 'Inter', 'ObitaemOstrov', monospace;
             font-size: 2.5rem;
-            font-weight: normal;
+            font-weight: 800;
             letter-spacing: 1px;
         }
         .logo-matoff {
@@ -841,20 +841,26 @@
         .social-icon.tt:hover { background: linear-gradient(135deg, #000000, #333333); }
         .social-icon.ig:hover { background: linear-gradient(135deg, #E4405F, #c13584); }
 
-        /* TELEGRAM ВИДЖЕТ — С ПОДДЕРЖКОЙ ТЕМЫ */
-        .telegram-widget {
+        /* БЛОК TELEGRAM (ЗАМЕНА ВИДЖЕТА) */
+        .telegram-block {
             background: var(--card-bg);
             backdrop-filter: blur(10px);
             border-radius: 32px;
-            padding: 30px;
+            padding: 40px;
             text-align: center;
             border: 1px solid var(--border-color);
             margin-top: 30px;
         }
-        .telegram-widget iframe {
+        .telegram-preview {
+            max-width: 500px;
+            margin: 20px auto;
             border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .telegram-preview img {
             width: 100%;
-            max-width: 100%;
+            display: block;
         }
 
         .reviews-grid {
@@ -1294,7 +1300,7 @@
     <div class="particles" id="particles"></div>
 </div>
 
-<!-- АКЦИЯ С ТАЙМЕРОМ -->
+<!-- АКЦИЯ С ТАЙМЕРОМ (будет заполнена из Google Sheets) -->
 <div id="promoBar" class="promo-bar" style="display: none;">
     <div class="container">
         <div class="promo-content">
@@ -1318,7 +1324,6 @@
             <a href="#advantages">Преимущества</a>
             <a href="#reviews">Отзывы</a>
             <a href="#order">Заявка</a>
-            <!-- ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ -->
             <div class="theme-toggle" id="themeToggle">
                 <span class="active" data-theme="dark">🌙</span>
                 <span data-theme="light">☀️</span>
@@ -1425,14 +1430,16 @@
         </div>
     </section>
     
-    <!-- TELEGRAM ВИДЖЕТ — С ПОДДЕРЖКОЙ ТЕМЫ -->
+    <!-- НАДЁЖНЫЙ БЛОК TELEGRAM (БЕЗ ВИДЖЕТА) -->
     <section id="telegram">
         <div class="container">
             <h2 class="section-title fade-up">Актуальные <span>комплектующие в наличии</span></h2>
-            <div class="telegram-widget">
+            <div class="telegram-block">
                 <h3>📢 Наш Telegram канал</h3>
                 <p style="margin-bottom: 15px;">Подписывайтесь, чтобы быть в курсе актуальных цен на комплектующие, периферию и готовые компьютеры</p>
-                <div id="telegramWidgetContainer"></div>
+                <div class="telegram-preview">
+                    <img src="https://placehold.co/600x300/1a1a2a/9b4dff?text=Matoff+PC+Telegram" alt="Telegram канал Matoff PC">
+                </div>
                 <a href="https://t.me/matoffpctg" target="_blank" class="btn telegram-channel-link" style="display: inline-flex; margin-top: 20px;">
                     📱 Перейти в Telegram канал
                 </a>
@@ -1508,31 +1515,11 @@
 
 <div id="adminPanel" class="admin-panel">
     <div class="container">
-        <h3 style="text-align:center; margin-bottom: 25px; color:#9b4dff;">⚙️ АДМИН-ПАНЕЛЬ</h3>
+        <h3 style="text-align:center; margin-bottom: 25px; color:#9b4dff;">⚙️ АДМИН-ПАНЕЛЬ (РЕДАКТИРУЙТЕ ЧЕРЕЗ GOOGLE SHEETS)</h3>
         <div class="admin-form">
-            <h4>🖼️ ГЛАВНОЕ ИЗОБРАЖЕНИЕ</h4>
-            <div id="heroImageEditArea"></div>
-            <h4>🎯 АКЦИЯ И ТАЙМЕР</h4>
-            <div id="promoEditArea"></div>
-            <h4>📊 СЧЁТЧИКИ</h4>
-            <div id="countersEditArea"></div>
-            <h4>📦 УСЛУГИ</h4>
-            <div id="servicesEditArea"></div>
-            <h4>🖥️ СБОРКИ</h4>
-            <div id="buildsEditArea"></div>
-            <h4>⭐ ОТЗЫВЫ С ФОТО</h4>
-            <div id="reviewsEditArea"></div>
-            <h4>📝 ЭТАПЫ РАБОТЫ</h4>
-            <div id="stepsEditArea"></div>
-            <h4>🏆 ПРЕИМУЩЕСТВА</h4>
-            <div id="advantagesEditArea"></div>
-            <h4>🎬 ВИДЕО</h4>
-            <div id="shortsEditArea"></div>
-            <h4>🔗 СОЦИАЛЬНЫЕ СЕТИ</h4>
-            <div id="socialEditArea"></div>
-            <button id="saveAllData" class="btn" style="margin-top: 25px; width:100%;">💾 СОХРАНИТЬ ВСЕ ИЗМЕНЕНИЯ</button>
-            <button id="resetToDefault" class="btn-outline btn" style="margin-top: 12px; width:100%;">↺ СБРОСИТЬ</button>
-            <button id="logoutAdminBtn" class="btn-outline btn" style="margin-top: 12px; width:100%;">🚪 Выйти</button>
+            <p style="margin-bottom: 20px;">📌 <strong>Все данные теперь хранятся в Google Sheets.</strong> Чтобы изменить услуги, сборки, отзывы или акцию, откройте вашу таблицу и отредактируйте соответствующие листы. Изменения появятся на сайте в течение 5-10 минут.</p>
+            <p style="margin-bottom: 20px;">🔗 <a href="https://docs.google.com/spreadsheets/d/ВАША_ТАБЛИЦА/edit" target="_blank" style="color:#9b4dff;">Открыть Google Sheets для редактирования</a></p>
+            <button id="logoutAdminBtn" class="btn-outline btn" style="margin-top: 12px; width:100%;">🚪 Выйти из админ-панели</button>
         </div>
     </div>
 </div>
@@ -1551,78 +1538,21 @@
 </div>
 
 <script>
-    // ==================== ОСНОВНЫЕ ДАННЫЕ ====================
+    // ==================== НАСТРОЙКИ ====================
     const TELEGRAM_BOT_TOKEN = "8787519466:AAFzHmOnPd7FFmEMzBs8c-NM9O8SQcvu0s0";
     const TELEGRAM_CHAT_ID = "1065465753";
     const ADMIN_PASSWORD = "matoff2025";
+    // ВАШ URL ИЗ GOOGLE SHEETS
+    const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbyt5jmNf75HUhZMPA4Op6zLc1iSAE360pV6GEOqFblmZe0i4tg0gG4aYUsZSYLFCLQHqA/exec";
 
-    // Функция для обновления Telegram виджета в зависимости от темы
-    function updateTelegramWidget() {
-        const container = document.getElementById('telegramWidgetContainer');
-        if (!container) return;
-        
-        const isDarkTheme = !document.body.classList.contains('light-theme');
-        const theme = isDarkTheme ? 1 : 0; // 1 = тёмная, 0 = светлая
-        
-        container.innerHTML = `<script async src="https://telegram.org/js/telegram-widget.js?23" data-telegram-post="matoffpctg/449" data-width="100%" data-dark="${theme}"><\/script>`;
-    }
-
-    const defaultData = {
-        heroImage: "https://placehold.co/1200x500/1a1a2a/9b4dff?text=Matoff+PC",
-        promo: { text: "🎁 Скидка 10% на первую сборку!", endDate: new Date(Date.now() + 7*24*60*60*1000).toISOString(), enabled: true },
-        counters: [
-            { number: 129, label: "Собранных ПК" },
-            { number: 94, label: "Довольных клиентов" },
-            { number: 3, label: "Года на рынке" }
-        ],
-        services: [
-            { name: "Индивидуальная сборка", desc: "Соберём ПК под ваши задачи. BIOS, стресс-тест, идеальный порядок проводов.", btn: "Заказать сборку" },
-            { name: "Ремонт ПК", desc: "Диагностика, замена комплектующих, восстановление работоспособности.", btn: "Записаться" },
-            { name: "Апгрейд", desc: "Модернизируем ваш ПК под современные игры и задачи.", btn: "Подобрать апгрейд" },
-            { name: "Личная консультация", desc: "Поможем с выбором железа, периферии, оптимизацией.", btn: "Проконсультироваться" },
-            { name: "Трейд-ин", desc: "Обменяйте старый ПК или комплектующие на новые с доплатой.", btn: "Оценить" },
-            { name: "Выкуп техники", desc: "Быстро оценим и выкупим вашу старую технику.", btn: "Продать" }
-        ],
-        builds: [
-            { name: "M.Standart", price: 68900, priceText: "68 900 ₽", specs: ["CPU: R5 5500","GPU: RTX 3050","RAM: 16GB DDR4","SSD: 512GB","Cooler: CR-1400E","PSU: 500W"], filterRange: "low", gpuType: "nvidia", cpuType: "amd", purpose: "games", image: "https://placehold.co/600x400/2a2a35/9b4dff?text=M.Standart", imageHover: "https://placehold.co/600x400/2a2a35/ffaa44?text=Open", fps: "60-80 FPS" },
-            { name: "M.Standart", price: 78900, priceText: "78 900 ₽", specs: ["CPU: R5 5600","GPU: RTX 3060","RAM: 16GB DDR4","SSD: 1TB","Cooler: CR-1400E","PSU: 550W"], filterRange: "low", gpuType: "nvidia", cpuType: "amd", purpose: "games", image: "https://placehold.co/600x400/2a2a35/9b4dff?text=M.Standart", imageHover: "https://placehold.co/600x400/2a2a35/ffaa44?text=Open", fps: "80-100 FPS" },
-            { name: "M.Standart", price: 89900, priceText: "89 900 ₽", specs: ["CPU: i5-12400F","GPU: RTX 3060 Ti","RAM: 32GB DDR4","SSD: 1TB","Cooler: Deepcool","PSU: 600W"], filterRange: "low", gpuType: "nvidia", cpuType: "intel", purpose: "games", image: "https://placehold.co/600x400/2a2a35/9b4dff?text=M.Standart", imageHover: "https://placehold.co/600x400/2a2a35/ffaa44?text=Open", fps: "100-120 FPS" },
-            { name: "M.Optima", price: 129900, priceText: "129 900 ₽", specs: ["CPU: i5-13400F","GPU: RTX 4060","RAM: 32GB DDR5","SSD: 1TB","Cooler: Deepcool","PSU: 650W"], filterRange: "mid", gpuType: "nvidia", cpuType: "intel", purpose: "games", image: "https://placehold.co/600x400/2a2a35/9b4dff?text=M.Optima", imageHover: "https://placehold.co/600x400/2a2a35/ffaa44?text=Open", fps: "120-140 FPS" },
-            { name: "M.Optima", price: 149900, priceText: "149 900 ₽", specs: ["CPU: i5-13600K","GPU: RTX 4060 Ti","RAM: 32GB DDR5","SSD: 2TB","Cooler: Liquid","PSU: 750W"], filterRange: "mid", gpuType: "nvidia", cpuType: "intel", purpose: "games", image: "https://placehold.co/600x400/2a2a35/9b4dff?text=M.Optima", imageHover: "https://placehold.co/600x400/2a2a35/ffaa44?text=Open", fps: "140-160 FPS" },
-            { name: "M.Optima", price: 169900, priceText: "169 900 ₽", specs: ["CPU: i7-13700F","GPU: RX 7700 XT","RAM: 32GB DDR5","SSD: 2TB","Cooler: Liquid","PSU: 750W"], filterRange: "mid", gpuType: "amd", cpuType: "intel", purpose: "video", image: "https://placehold.co/600x400/2a2a35/9b4dff?text=M.Optima", imageHover: "https://placehold.co/600x400/2a2a35/ffaa44?text=Open", fps: "150-180 FPS" },
-            { name: "M.Master", price: 229900, priceText: "229 900 ₽", specs: ["CPU: i7-14700K","GPU: RTX 4070 Ti","RAM: 64GB DDR5","SSD: 2TB","Cooler: Liquid","PSU: 850W"], filterRange: "high", gpuType: "nvidia", cpuType: "intel", purpose: "video", image: "https://placehold.co/600x400/2a2a35/9b4dff?text=M.Master", imageHover: "https://placehold.co/600x400/2a2a35/ffaa44?text=Open", fps: "200-240 FPS" },
-            { name: "M.Master", price: 279900, priceText: "279 900 ₽", specs: ["CPU: Ryzen 7 7800X3D","GPU: RTX 4080","RAM: 64GB DDR5","SSD: 4TB","Cooler: Liquid","PSU: 1000W"], filterRange: "high", gpuType: "nvidia", cpuType: "amd", purpose: "games", image: "https://placehold.co/600x400/2a2a35/9b4dff?text=M.Master", imageHover: "https://placehold.co/600x400/2a2a35/ffaa44?text=Open", fps: "240-300 FPS" },
-            { name: "M.Master", price: 349900, priceText: "349 900 ₽", specs: ["CPU: i9-14900K","GPU: RX 7900 XTX","RAM: 128GB DDR5","SSD: 4TB","Cooler: Custom","PSU: 1200W"], filterRange: "high", gpuType: "amd", cpuType: "intel", purpose: "video", image: "https://placehold.co/600x400/2a2a35/9b4dff?text=M.Master", imageHover: "https://placehold.co/600x400/2a2a35/ffaa44?text=Open", fps: "300+ FPS" }
-        ],
-        steps: [
-            { name: "📝 Оставить заявку", desc: "Оставьте заявку на сайте или в мессенджере. Обсудим детали и подберём конфигурацию." },
-            { name: "🤝 Согласование сборки", desc: "Согласуем финальную конфигурацию, цены и сроки. Подпишем договор." },
-            { name: "🚀 Сборка, упаковка, отправка", desc: "Собираем ваш ПК, тестируем, упаковываем и отправляем по всей России." }
-        ],
-        advantages: [
-            { name: "Профессиональная сборка", desc: "Без паутины проводов, настройка BIOS и полное тестирование." },
-            { name: "Гарантия 1 год", desc: "Фирменная гарантия + гарантия производителя." },
-            { name: "Помощь в настройке", desc: "Поможем с установкой ПО, драйверов, ответим на вопросы." },
-            { name: "Доставка по всей РФ", desc: "Бережная доставка в любую точку России, страховка 100%." },
-            { name: "Трейд-ин и выкуп", desc: "Выгодно обменяем или выкупим вашу старую технику." },
-            { name: "Сертифицированные компоненты", desc: "Только оригинальные комплектующие Intel, AMD, NVIDIA." }
-        ],
-        reviews: [
-            { name: "Михаил", text: "Все супер) Рекомендую обратиться в эту компанию!", image: "https://placehold.co/100x100/2a2a35/9b4dff?text=User" },
-            { name: "Алексей", text: "Отличная компьютерная мастерская! Сделали все на высшем уровне.", image: "https://placehold.co/100x100/2a2a35/9b4dff?text=User" },
-            { name: "Василиса", text: "Эти ребята лучшие!! Доступно объяснили принципы сборки. Спасибо!", image: "https://placehold.co/100x100/2a2a35/9b4dff?text=User" }
-        ],
-        shorts: [
-            { title: "Обзор M.Master", url: "https://www.youtube.com/shorts/SXHMnicI6Pg", preview: "https://img.youtube.com/vi/SXHMnicI6Pg/hqdefault.jpg" },
-            { title: "Как мы собираем", url: "https://www.youtube.com/shorts/7Hxg2K5CQ6A", preview: "https://img.youtube.com/vi/7Hxg2K5CQ6A/hqdefault.jpg" },
-            { title: "Советы по апгрейду", url: "https://www.youtube.com/shorts/1ExLJyKc-1E", preview: "https://img.youtube.com/vi/1ExLJyKc-1E/hqdefault.jpg" }
-        ],
-        socials: { vk: "https://vk.com/matoffpc", telegram: "https://t.me/matoffpctg", youtube: "https://youtube.com/@matoffpc", tiktok: "https://tiktok.com/@matoffpc", instagram: "https://instagram.com/matoffpc" },
-        managerLinks: { vk: "https://vk.com/matoffpc", tg: "https://t.me/matoffpctg" }
+    let siteData = {
+        services: [],
+        builds: [],
+        reviews: [],
+        counters: [],
+        promo: null,
+        socials: {}
     };
-
-    let siteData = JSON.parse(localStorage.getItem("matoff_final_v34"));
-    if (!siteData) siteData = JSON.parse(JSON.stringify(defaultData));
 
     function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, m => m==='&'?'&amp;':m==='<'?'&lt;':'&gt;'); }
     
@@ -1636,6 +1566,30 @@
         return "🔧";
     }
 
+    // ЗАГРУЗКА ДАННЫХ ИЗ GOOGLE SHEETS
+    async function loadDataFromSheets() {
+        try {
+            const response = await fetch(GOOGLE_SHEETS_URL);
+            const data = await response.json();
+            siteData.services = data.услуги || [];
+            siteData.builds = data.сборки || [];
+            siteData.reviews = data.отзывы || [];
+            siteData.counters = data.счётчики || [];
+            if (data.акция && data.акция.length > 0) siteData.promo = data.акция[0];
+            if (data.соцсети) {
+                siteData.socials = {};
+                data.соцсети.forEach(item => {
+                    siteData.socials[item.ключ] = item.ссылка;
+                });
+            }
+            return true;
+        } catch (error) {
+            console.error("Ошибка загрузки данных из Google Sheets:", error);
+            return false;
+        }
+    }
+
+    // Отправка заявки в Telegram
     async function sendToTelegram(name, contact, contactType, comment) {
         const message = `🆕 НОВАЯ ЗАЯВКА MATOFF PC\n\n👤 Имя: ${name}\n📞 Контакт (${contactType}): ${contact}\n📝 Комментарий: ${comment || "—"}\n🕐 Время: ${new Date().toLocaleString()}`;
         const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
@@ -1654,6 +1608,14 @@
 
     function scrollToOrder() {
         document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // РЕНДЕР СЕКЦИЙ
+    function renderCounters() {
+        if (!siteData.counters || siteData.counters.length === 0) return;
+        let html = siteData.counters.map(c => `<div class="counter-card"><div class="counter-number" data-target="${c.число}">0</div><div class="counter-label">${escapeHtml(c.подпись)}</div></div>`).join('');
+        document.getElementById('countersContainer').innerHTML = html;
+        animateCounters();
     }
 
     function animateCounters() {
@@ -1675,40 +1637,9 @@
         });
     }
 
-    function updatePromoTimer() {
-        if (!siteData.promo || !siteData.promo.enabled) {
-            document.getElementById('promoBar').style.display = 'none';
-            return;
-        }
-        const endDate = new Date(siteData.promo.endDate);
-        const now = new Date();
-        const diff = endDate - now;
-        if (diff <= 0) {
-            document.getElementById('promoBar').style.display = 'none';
-            return;
-        }
-        document.getElementById('promoBar').style.display = 'block';
-        document.getElementById('promoText').textContent = siteData.promo.text;
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (86400000)) / 3600000);
-        const minutes = Math.floor((diff % 3600000) / 60000);
-        const seconds = Math.floor((diff % 60000) / 1000);
-        document.getElementById('promoTimer').textContent = `${days}д ${hours}ч ${minutes}м ${seconds}с`;
-    }
-
-    function renderHeroImage() {
-        const heroImg = document.getElementById('heroImage');
-        if (heroImg && siteData.heroImage) heroImg.src = siteData.heroImage;
-    }
-
-    function renderCounters() {
-        let html = siteData.counters.map(c => `<div class="counter-card"><div class="counter-number" data-target="${c.number}">0</div><div class="counter-label">${escapeHtml(c.label)}</div></div>`).join('');
-        document.getElementById('countersContainer').innerHTML = html;
-        animateCounters();
-    }
-
     function renderServices() {
-        let html = siteData.services.map(s => `<div class="service-card"><h3>${escapeHtml(s.name)}</h3><p>${escapeHtml(s.desc)}</p><button class="btn service-btn" data-service="${s.name}">${escapeHtml(s.btn)}</button></div>`).join('');
+        if (!siteData.services || siteData.services.length === 0) return;
+        let html = siteData.services.map(s => `<div class="service-card"><h3>${escapeHtml(s.название)}</h3><p>${escapeHtml(s.описание)}</p><button class="btn service-btn" data-service="${s.название}">${escapeHtml(s.кнопка)}</button></div>`).join('');
         document.getElementById('servicesContainer').innerHTML = html;
         document.querySelectorAll('.service-btn').forEach(btn => btn.addEventListener('click', () => scrollToOrder()));
     }
@@ -1717,17 +1648,18 @@
     let currentGpuFilter = "all";
     
     function renderBuilds() {
+        if (!siteData.builds || siteData.builds.length === 0) return;
         let filtered = [...siteData.builds];
         if (currentFilter !== "all") {
-            filtered = filtered.filter(b => b.filterRange === currentFilter);
+            filtered = filtered.filter(b => b.фильтр_цены === currentFilter);
         }
         if (currentGpuFilter !== "all") {
-            filtered = filtered.filter(b => b.gpuType === currentGpuFilter);
+            filtered = filtered.filter(b => b.тип_видеокарты === currentGpuFilter);
         }
-        let html = filtered.map(b => `<div class="build-card"><div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.image}" alt="${b.name}"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" alt="${b.name}"></div><h3>${escapeHtml(b.name)}</h3><div class="price">${escapeHtml(b.priceText)}</div><div class="fps-block"><div class="fps-title">🎮 ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div><div class="fps-value">${escapeHtml(b.fps || "60-100 FPS")}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${escapeHtml(sp)}</span></div>`).join('')}</div><button class="btn btn-buy" data-price="${b.price}">💰 Купить</button></div>`).join('');
+        let html = filtered.map(b => `<div class="build-card"><div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.фото}" alt="${b.название}"><img class="pc-image pc-image-hover" src="${b.фото_при_наведении || b.фото}" alt="${b.название}"></div><h3>${escapeHtml(b.название)}</h3><div class="price">${escapeHtml(b.текст_цены)}</div><div class="fps-block"><div class="fps-title">🎮 ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div><div class="fps-value">${escapeHtml(b.фпс || "60-100 FPS")}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${(b.комплектующие || "").split(',').map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${escapeHtml(sp)}</span></div>`).join('')}</div><button class="btn btn-buy" data-price="${b.цена}">💰 Купить</button></div>`).join('');
         document.getElementById('buildsContainer').innerHTML = html;
         
-        // 3D ЭФФЕКТ ДЛЯ КАРТОЧЕК (уменьшен угол наклона)
+        // 3D ЭФФЕКТ ДЛЯ КАРТОЧЕК
         const cards = document.querySelectorAll('.build-card');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
@@ -1748,23 +1680,49 @@
         document.querySelectorAll('.btn-buy').forEach(btn => btn.addEventListener('click', () => scrollToOrder()));
     }
 
-    function renderSteps() { document.getElementById('stepsContainer').innerHTML = siteData.steps.map(s => `<div class="step-card"><h3>${escapeHtml(s.name)}</h3><p>${escapeHtml(s.desc)}</p></div>`).join(''); }
-    function renderAdvantages() { document.getElementById('advantagesContainer').innerHTML = siteData.advantages.map(a => `<div class="advantage-card"><h3>${escapeHtml(a.name)}</h3><p>${escapeHtml(a.desc)}</p></div>`).join(''); }
-    function renderShorts() { document.getElementById('shortsContainer').innerHTML = siteData.shorts.map(sh => `<div class="short-card" onclick="window.open('${sh.url}','_blank')"><img src="${sh.preview}" onerror="this.src='https://placehold.co/280x500?text=Video'"><p>${escapeHtml(sh.title)}</p></div>`).join(''); }
+    function renderSteps() { 
+        const steps = [
+            { name: "📝 Оставить заявку", desc: "Оставьте заявку на сайте или в мессенджере. Обсудим детали и подберём конфигурацию." },
+            { name: "🤝 Согласование сборки", desc: "Согласуем финальную конфигурацию, цены и сроки. Подпишем договор." },
+            { name: "🚀 Сборка, упаковка, отправка", desc: "Собираем ваш ПК, тестируем, упаковываем и отправляем по всей России." }
+        ];
+        document.getElementById('stepsContainer').innerHTML = steps.map(s => `<div class="step-card"><h3>${escapeHtml(s.name)}</h3><p>${escapeHtml(s.desc)}</p></div>`).join(''); 
+    }
+    
+    function renderAdvantages() { 
+        const advantages = [
+            { name: "Профессиональная сборка", desc: "Без паутины проводов, настройка BIOS и полное тестирование." },
+            { name: "Гарантия 1 год", desc: "Фирменная гарантия + гарантия производителя." },
+            { name: "Помощь в настройке", desc: "Поможем с установкой ПО, драйверов, ответим на вопросы." },
+            { name: "Доставка по всей РФ", desc: "Бережная доставка в любую точку России, страховка 100%." },
+            { name: "Трейд-ин и выкуп", desc: "Выгодно обменяем или выкупим вашу старую технику." },
+            { name: "Сертифицированные компоненты", desc: "Только оригинальные комплектующие Intel, AMD, NVIDIA." }
+        ];
+        document.getElementById('advantagesContainer').innerHTML = advantages.map(a => `<div class="advantage-card"><h3>${escapeHtml(a.name)}</h3><p>${escapeHtml(a.desc)}</p></div>`).join(''); 
+    }
+    
+    function renderShorts() { 
+        const shorts = [
+            { title: "Обзор M.Master", url: "https://www.youtube.com/shorts/SXHMnicI6Pg", preview: "https://img.youtube.com/vi/SXHMnicI6Pg/hqdefault.jpg" },
+            { title: "Как мы собираем", url: "https://www.youtube.com/shorts/7Hxg2K5CQ6A", preview: "https://img.youtube.com/vi/7Hxg2K5CQ6A/hqdefault.jpg" },
+            { title: "Советы по апгрейду", url: "https://www.youtube.com/shorts/1ExLJyKc-1E", preview: "https://img.youtube.com/vi/1ExLJyKc-1E/hqdefault.jpg" }
+        ];
+        document.getElementById('shortsContainer').innerHTML = shorts.map(sh => `<div class="short-card" onclick="window.open('${sh.url}','_blank')"><img src="${sh.preview}" onerror="this.src='https://placehold.co/280x500?text=Video'"><p>${escapeHtml(sh.title)}</p></div>`).join(''); 
+    }
     
     function renderReviews() {
-        let html = siteData.reviews.map(r => `<div class="review-card"><img class="review-photo" src="${r.image}" onerror="this.src='https://placehold.co/100x100/2a2a35/9b4dff?text=User'"><strong>⭐ ${escapeHtml(r.name)}</strong><p style="margin-top:12px;">${escapeHtml(r.text)}</p></div>`).join('');
+        if (!siteData.reviews || siteData.reviews.length === 0) return;
+        let html = siteData.reviews.map(r => `<div class="review-card"><img class="review-photo" src="${r.фото}" onerror="this.src='https://placehold.co/100x100/2a2a35/9b4dff?text=User'"><strong>⭐ ${escapeHtml(r.имя)}</strong><p style="margin-top:12px;">${escapeHtml(r.текст)}</p></div>`).join('');
         document.getElementById('reviewsContainer').innerHTML = html;
     }
     
     function renderSocialBlock() {
-        const s = siteData.socials;
         const socialMap = [
-            { id: 'vk', name: 'VK', url: s.vk, icon: '📱', class: 'vk' },
-            { id: 'tg', name: 'Telegram', url: s.telegram, icon: '💬', class: 'tg' },
-            { id: 'yt', name: 'YouTube', url: s.youtube, icon: '📺', class: 'yt' },
-            { id: 'tt', name: 'TikTok', url: s.tiktok, icon: '🎵', class: 'tt' },
-            { id: 'ig', name: 'Instagram', url: s.instagram, icon: '📷', class: 'ig' }
+            { id: 'vk', name: 'VK', url: siteData.socials?.вк, icon: '📱', class: 'vk' },
+            { id: 'tg', name: 'Telegram', url: siteData.socials?.телеграм, icon: '💬', class: 'tg' },
+            { id: 'yt', name: 'YouTube', url: siteData.socials?.ютуб, icon: '📺', class: 'yt' },
+            { id: 'tt', name: 'TikTok', url: siteData.socials?.тикток, icon: '🎵', class: 'tt' },
+            { id: 'ig', name: 'Instagram', url: siteData.socials?.инстаграм, icon: '📷', class: 'ig' }
         ];
         let html = '';
         for (let social of socialMap) {
@@ -1775,7 +1733,37 @@
         document.getElementById('socialIconsContainer').innerHTML = html;
     }
 
-    // РАСШИРЕННЫЙ КАЛЬКУЛЯТОР
+    function renderPromo() {
+        if (siteData.promo && siteData.promo.включена === "true") {
+            document.getElementById('promoBar').style.display = 'block';
+            document.getElementById('promoText').textContent = siteData.promo.текст || "🎁 Скидка 10% на первую сборку!";
+            startPromoTimer(siteData.promo.дата_окончания);
+        } else {
+            document.getElementById('promoBar').style.display = 'none';
+        }
+    }
+
+    function startPromoTimer(endDateStr) {
+        if (!endDateStr) return;
+        const endDate = new Date(endDateStr);
+        function update() {
+            const now = new Date();
+            const diff = endDate - now;
+            if (diff <= 0) {
+                document.getElementById('promoBar').style.display = 'none';
+                return;
+            }
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (86400000)) / 3600000);
+            const minutes = Math.floor((diff % 3600000) / 60000);
+            const seconds = Math.floor((diff % 60000) / 1000);
+            document.getElementById('promoTimer').textContent = `${days}д ${hours}ч ${minutes}м ${seconds}с`;
+        }
+        update();
+        setInterval(update, 1000);
+    }
+
+    // КАЛЬКУЛЯТОР
     function initCalculator() {
         const calcButton = document.getElementById('calcButton');
         const resultDiv = document.getElementById('calculatorResult');
@@ -1788,27 +1776,27 @@
             
             let filtered = [...siteData.builds];
             
-            if (budget === 70000) filtered = filtered.filter(b => b.price <= 70000);
-            else if (budget === 90000) filtered = filtered.filter(b => b.price > 70000 && b.price <= 90000);
-            else if (budget === 120000) filtered = filtered.filter(b => b.price > 90000 && b.price <= 120000);
-            else if (budget === 160000) filtered = filtered.filter(b => b.price > 120000 && b.price <= 160000);
-            else if (budget === 200000) filtered = filtered.filter(b => b.price > 160000 && b.price <= 200000);
-            else if (budget === 260000) filtered = filtered.filter(b => b.price > 200000 && b.price <= 260000);
-            else if (budget === 999999) filtered = filtered.filter(b => b.price > 260000);
+            if (budget === 70000) filtered = filtered.filter(b => b.цена <= 70000);
+            else if (budget === 90000) filtered = filtered.filter(b => b.цена > 70000 && b.цена <= 90000);
+            else if (budget === 120000) filtered = filtered.filter(b => b.цена > 90000 && b.цена <= 120000);
+            else if (budget === 160000) filtered = filtered.filter(b => b.цена > 120000 && b.цена <= 160000);
+            else if (budget === 200000) filtered = filtered.filter(b => b.цена > 160000 && b.цена <= 200000);
+            else if (budget === 260000) filtered = filtered.filter(b => b.цена > 200000 && b.цена <= 260000);
+            else if (budget === 999999) filtered = filtered.filter(b => b.цена > 260000);
             
             if (purpose !== 'any') {
-                const purposeFiltered = filtered.filter(b => b.purpose === purpose);
+                const purposeFiltered = filtered.filter(b => b.назначение === purpose);
                 if (purposeFiltered.length > 0) filtered = purposeFiltered;
             }
             if (cpuPref !== 'any' && filtered.length > 0) {
-                const cpuFiltered = filtered.filter(b => b.cpuType === cpuPref);
+                const cpuFiltered = filtered.filter(b => b.тип_процессора === cpuPref);
                 if (cpuFiltered.length > 0) filtered = cpuFiltered;
             }
             if (gpuPref !== 'any' && filtered.length > 0) {
-                const gpuFiltered = filtered.filter(b => b.gpuType === gpuPref);
+                const gpuFiltered = filtered.filter(b => b.тип_видеокарты === gpuPref);
                 if (gpuFiltered.length > 0) filtered = gpuFiltered;
             }
-            filtered.sort((a,b) => a.price - b.price);
+            filtered.sort((a,b) => a.цена - b.цена);
             const selected = filtered[0];
             
             if (selected) {
@@ -1817,18 +1805,18 @@
                         <h3 style="color:#9b4dff; margin-bottom: 20px; text-align: center;">✅ Рекомендуемая сборка</h3>
                         <div style="display: flex; flex-wrap: wrap; gap: 25px; align-items: flex-start; justify-content: center;">
                             <div style="flex: 1; min-width: 180px;">
-                                <img src="${selected.image}" style="width: 100%; max-width: 200px; border-radius: 20px; border: 1px solid #9b4dff;">
+                                <img src="${selected.фото}" style="width: 100%; max-width: 200px; border-radius: 20px; border: 1px solid #9b4dff;">
                             </div>
                             <div style="flex: 2; min-width: 250px;">
-                                <h2 style="font-size: 1.8rem; margin-bottom: 10px;">${escapeHtml(selected.name)}</h2>
-                                <div class="price" style="font-size: 1.8rem; margin: 10px 0;">${escapeHtml(selected.priceText)}</div>
+                                <h2 style="font-size: 1.8rem; margin-bottom: 10px;">${escapeHtml(selected.название)}</h2>
+                                <div class="price" style="font-size: 1.8rem; margin: 10px 0;">${escapeHtml(selected.текст_цены)}</div>
                                 <div class="fps-block" style="margin: 15px 0;">
                                     <div class="fps-title">🎮 ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div>
-                                    <div class="fps-value">${escapeHtml(selected.fps)}</div>
+                                    <div class="fps-value">${escapeHtml(selected.фпс)}</div>
                                 </div>
                                 <div class="specs-title" style="margin-top: 15px;">⚙️ КОМПЛЕКТУЮЩИЕ</div>
                                 <div class="specs-two-columns" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 15px 0;">
-                                    ${selected.specs.map(sp => `<div class="spec-item" style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 12px;"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${escapeHtml(sp)}</span></div>`).join('')}
+                                    ${(selected.комплектующие || "").split(',').map(sp => `<div class="spec-item" style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 12px;"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${escapeHtml(sp)}</span></div>`).join('')}
                                 </div>
                                 <button class="btn" onclick="scrollToOrder()" style="margin-top: 15px; width: 100%;">📝 Оставить заявку на эту сборку</button>
                             </div>
@@ -1914,7 +1902,6 @@
         });
     }
 
-    // КНОПКА НАВЕРХ
     function initScrollTop() {
         const btn = document.getElementById('scrollTopBtn');
         window.addEventListener('scroll', () => {
@@ -1924,15 +1911,10 @@
         btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     }
 
-    // ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ (по умолчанию тёмная)
     function initTheme() {
         const toggle = document.getElementById('themeToggle');
         const savedTheme = localStorage.getItem('matoff_theme') || 'dark';
         if (savedTheme === 'light') document.body.classList.add('light-theme');
-        
-        // Обновляем виджет Telegram при загрузке
-        updateTelegramWidget();
-        
         toggle.querySelectorAll('span').forEach(span => {
             span.classList.toggle('active', span.dataset.theme === savedTheme);
             span.addEventListener('click', () => {
@@ -1941,230 +1923,19 @@
                 localStorage.setItem('matoff_theme', theme);
                 toggle.querySelectorAll('span').forEach(s => s.classList.remove('active'));
                 span.classList.add('active');
-                // Обновляем виджет Telegram при смене темы
-                updateTelegramWidget();
             });
         });
     }
 
-    // АДМИН-ПАНЕЛЬ (упрощённая для сохранения функционала)
+    // АДМИН-ПАНЕЛЬ (упрощена, так как редактирование через Google Sheets)
     function showAdminLogin() { document.getElementById('adminLoginOverlay').style.display = 'flex'; }
     function hideAdminLogin() { document.getElementById('adminLoginOverlay').style.display = 'none'; }
-    function showAdminPanel() { document.getElementById('adminPanel').classList.add('visible'); renderAdminForms(); }
+    function showAdminPanel() { document.getElementById('adminPanel').classList.add('visible'); }
     function hideAdminPanel() { document.getElementById('adminPanel').classList.remove('visible'); }
 
-    function setupHeroImageUpload() {
-        const container = document.getElementById('heroImageEditArea');
-        if (!container) return;
-        container.innerHTML = `<div class="section-block"><label>Главное изображение</label><div class="image-upload-preview"><img id="hero_preview" src="${siteData.heroImage}" style="width:100%; max-width:300px;"><input type="file" id="hero_file" accept="image/*" style="display:none"><button type="button" class="upload-btn" onclick="document.getElementById('hero_file').click()">📷 Выбрать фото</button></div><input type="text" id="hero_url" value="${siteData.heroImage}" placeholder="URL картинки"></div>`;
-        const fileInput = document.getElementById('hero_file');
-        const preview = document.getElementById('hero_preview');
-        const urlInput = document.getElementById('hero_url');
-        fileInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = function(ev) { preview.src = ev.target.result; urlInput.value = ev.target.result; };
-                reader.readAsDataURL(file);
-            }
-        });
-        urlInput.addEventListener('input', () => preview.src = urlInput.value);
-    }
-
-    function setupPromoEdit() {
-        const container = document.getElementById('promoEditArea');
-        if (!container) return;
-        const endDate = siteData.promo ? new Date(siteData.promo.endDate).toISOString().slice(0, 16) : new Date(Date.now() + 7*24*60*60*1000).toISOString().slice(0, 16);
-        container.innerHTML = `<div class="section-block"><label>Текст акции</label><input type="text" id="promo_text" value="${escapeHtml(siteData.promo?.text || '')}"><label>Дата окончания</label><input type="datetime-local" id="promo_date" value="${endDate}"><label>Показывать акцию</label><select id="promo_enabled"><option ${siteData.promo?.enabled ? 'selected' : ''} value="true">Да</option><option ${!siteData.promo?.enabled ? 'selected' : ''} value="false">Нет</option></select></div>`;
-    }
-
-    function setupCountersEdit() {
-        const container = document.getElementById('countersEditArea');
-        if (!container) return;
-        let html = '';
-        siteData.counters.forEach((c, i) => {
-            html += `<div class="section-block"><label>Счётчик #${i+1}</label><input type="number" id="counter_num_${i}" value="${c.number}"><input type="text" id="counter_label_${i}" value="${escapeHtml(c.label)}"></div>`;
-        });
-        container.innerHTML = html;
-    }
-
-    function setupImageUpload(index, currentImageUrl, isHover = false, isReview = false, reviewIdx = null) {
-        const containerId = isReview ? `review_image_upload_${reviewIdx}` : (isHover ? `image_upload_container_hover_${index}` : `image_upload_container_${index}`);
-        const container = document.getElementById(containerId);
-        if (!container) return;
-        const previewId = isReview ? `review_preview_${reviewIdx}` : (isHover ? `image_preview_hover_${index}` : `image_preview_${index}`);
-        const fileInputId = isReview ? `review_file_${reviewIdx}` : (isHover ? `image_file_hover_${index}` : `image_file_${index}`);
-        container.innerHTML = `<div class="image-upload-preview"><img id="${previewId}" src="${currentImageUrl}" style="width:80px;height:80px;"><input type="file" id="${fileInputId}" accept="image/*" style="display:none"><button type="button" class="upload-btn" onclick="document.getElementById('${fileInputId}').click()">📷 Выбрать фото</button></div>`;
-        const fileInput = document.getElementById(fileInputId);
-        const preview = document.getElementById(previewId);
-        fileInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = function(ev) {
-                    preview.src = ev.target.result;
-                    const hiddenInput = document.getElementById(isReview ? `review_image_hidden_${reviewIdx}` : (isHover ? `b_image_hover_hidden_${index}` : `b_image_hidden_${index}`));
-                    if (hiddenInput) hiddenInput.value = ev.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    }
-
-    function renderAdminForms() {
-        setupHeroImageUpload();
-        setupPromoEdit();
-        setupCountersEdit();
-        
-        let servicesHtml = '';
-        siteData.services.forEach((s,i) => {
-            servicesHtml += `<div class="section-block"><label>Услуга #${i+1}</label><input type="text" id="s_name_${i}" value="${escapeHtml(s.name)}"><textarea id="s_desc_${i}" rows="2">${escapeHtml(s.desc)}</textarea><input type="text" id="s_btn_${i}" value="${escapeHtml(s.btn)}"></div>`;
-        });
-        document.getElementById('servicesEditArea').innerHTML = servicesHtml;
-        
-        let buildsHtml = '';
-        siteData.builds.forEach((b,i) => {
-            buildsHtml += `<div class="section-block"><label>Сборка #${i+1} (${b.name})</label>
-                <input type="text" id="b_name_${i}" value="${escapeHtml(b.name)}">
-                <input type="number" id="b_price_${i}" value="${b.price}">
-                <input type="text" id="b_priceText_${i}" value="${escapeHtml(b.priceText)}">
-                <label>Обычное фото</label><div id="image_upload_container_${i}"></div><input type="hidden" id="b_image_hidden_${i}" value="${b.image}">
-                <label>Фото при наведении</label><div id="image_upload_container_hover_${i}"></div><input type="hidden" id="b_image_hover_hidden_${i}" value="${b.imageHover || b.image}">
-                <label>FPS</label><input type="text" id="b_fps_${i}" value="${escapeHtml(b.fps)}">
-                <label>Тип видеокарты</label><select id="b_gpu_${i}"><option ${b.gpuType==='nvidia'?'selected':''} value="nvidia">NVIDIA</option><option ${b.gpuType==='amd'?'selected':''} value="amd">AMD</option></select>
-                <label>Тип процессора</label><select id="b_cpu_${i}"><option ${b.cpuType==='intel'?'selected':''} value="intel">Intel</option><option ${b.cpuType==='amd'?'selected':''} value="amd">AMD</option></select>
-                <label>Назначение</label><select id="b_purpose_${i}"><option ${b.purpose==='games'?'selected':''} value="games">Игры</option><option ${b.purpose==='work'?'selected':''} value="work">Работа</option><option ${b.purpose==='video'?'selected':''} value="video">Видеомонтаж</option><option ${b.purpose==='universal'?'selected':''} value="universal">Универсальная</option></select>
-                <textarea id="b_specs_${i}" rows="2">${b.specs.join(',')}</textarea>
-                <select id="b_range_${i}"><option ${b.filterRange==='low'?'selected':''} value="low">low</option><option ${b.filterRange==='mid'?'selected':''} value="mid">mid</option><option ${b.filterRange==='high'?'selected':''} value="high">high</option></select>
-            </div>`;
-        });
-        document.getElementById('buildsEditArea').innerHTML = buildsHtml;
-        for (let i = 0; i < siteData.builds.length; i++) {
-            setupImageUpload(i, siteData.builds[i].image, false);
-            setupImageUpload(i, siteData.builds[i].imageHover || siteData.builds[i].image, true);
-        }
-        
-        let reviewsHtml = '';
-        siteData.reviews.forEach((r,i) => {
-            reviewsHtml += `<div class="section-block"><label>Отзыв #${i+1}</label>
-                <div id="review_image_upload_${i}"></div><input type="hidden" id="review_image_hidden_${i}" value="${r.image}">
-                <input type="text" id="r_name_${i}" value="${escapeHtml(r.name)}">
-                <textarea id="r_text_${i}" rows="2">${escapeHtml(r.text)}</textarea>
-            </div>`;
-        });
-        document.getElementById('reviewsEditArea').innerHTML = reviewsHtml;
-        for (let i = 0; i < siteData.reviews.length; i++) {
-            setupImageUpload(i, siteData.reviews[i].image, false, true, i);
-        }
-        
-        let stepsHtml = '';
-        siteData.steps.forEach((s,i) => {
-            stepsHtml += `<div class="section-block"><label>Этап #${i+1}</label><input type="text" id="st_name_${i}" value="${escapeHtml(s.name)}"><textarea id="st_desc_${i}" rows="2">${escapeHtml(s.desc)}</textarea></div>`;
-        });
-        document.getElementById('stepsEditArea').innerHTML = stepsHtml;
-        
-        let advHtml = '';
-        siteData.advantages.forEach((a,i) => {
-            advHtml += `<div class="section-block"><label>Преимущество #${i+1}</label><input type="text" id="adv_name_${i}" value="${escapeHtml(a.name)}"><textarea id="adv_desc_${i}" rows="2">${escapeHtml(a.desc)}</textarea></div>`;
-        });
-        document.getElementById('advantagesEditArea').innerHTML = advHtml;
-        
-        let shortsHtml = '';
-        siteData.shorts.forEach((sh,i) => {
-            shortsHtml += `<div class="section-block"><label>Видео #${i+1}</label><input type="text" id="short_title_${i}" value="${escapeHtml(sh.title)}"><input type="text" id="short_url_${i}" value="${sh.url}"><input type="text" id="short_preview_${i}" value="${sh.preview}"></div>`;
-        });
-        document.getElementById('shortsEditArea').innerHTML = shortsHtml;
-        
-        let s = siteData.socials;
-        let socialHtml = `<div class="section-block">
-            <label>VK</label><input type="text" id="soc_vk" value="${s.vk||''}">
-            <label>Telegram</label><input type="text" id="soc_tg" value="${s.telegram||''}">
-            <label>YouTube</label><input type="text" id="soc_yt" value="${s.youtube||''}">
-            <label>TikTok</label><input type="text" id="soc_tt" value="${s.tiktok||''}">
-            <label>Instagram</label><input type="text" id="soc_ig" value="${s.instagram||''}">
-            <label>Менеджер VK</label><input type="text" id="manager_vk" value="${siteData.managerLinks.vk||''}">
-            <label>Менеджер Telegram</label><input type="text" id="manager_tg" value="${siteData.managerLinks.tg||''}">
-        </div>`;
-        document.getElementById('socialEditArea').innerHTML = socialHtml;
-    }
-
-    function saveAll() {
-        const heroUrl = document.getElementById('hero_url');
-        if (heroUrl) siteData.heroImage = heroUrl.value;
-        siteData.promo = {
-            text: document.getElementById('promo_text').value,
-            endDate: new Date(document.getElementById('promo_date').value).toISOString(),
-            enabled: document.getElementById('promo_enabled').value === 'true'
-        };
-        for (let i = 0; i < siteData.counters.length; i++) {
-            siteData.counters[i].number = parseInt(document.getElementById(`counter_num_${i}`).value);
-            siteData.counters[i].label = document.getElementById(`counter_label_${i}`).value;
-        }
-        for (let i = 0; i < siteData.services.length; i++) {
-            siteData.services[i].name = document.getElementById(`s_name_${i}`).value;
-            siteData.services[i].desc = document.getElementById(`s_desc_${i}`).value;
-            siteData.services[i].btn = document.getElementById(`s_btn_${i}`).value;
-        }
-        for (let i = 0; i < siteData.builds.length; i++) {
-            siteData.builds[i].name = document.getElementById(`b_name_${i}`).value;
-            siteData.builds[i].price = parseInt(document.getElementById(`b_price_${i}`).value);
-            siteData.builds[i].priceText = document.getElementById(`b_priceText_${i}`).value;
-            const hiddenImage = document.getElementById(`b_image_hidden_${i}`);
-            if (hiddenImage && hiddenImage.value) siteData.builds[i].image = hiddenImage.value;
-            const hiddenImageHover = document.getElementById(`b_image_hover_hidden_${i}`);
-            if (hiddenImageHover && hiddenImageHover.value) siteData.builds[i].imageHover = hiddenImageHover.value;
-            siteData.builds[i].fps = document.getElementById(`b_fps_${i}`).value;
-            siteData.builds[i].gpuType = document.getElementById(`b_gpu_${i}`).value;
-            siteData.builds[i].cpuType = document.getElementById(`b_cpu_${i}`).value;
-            siteData.builds[i].purpose = document.getElementById(`b_purpose_${i}`).value;
-            siteData.builds[i].specs = document.getElementById(`b_specs_${i}`).value.split(',').map(s=>s.trim());
-            siteData.builds[i].filterRange = document.getElementById(`b_range_${i}`).value;
-        }
-        for (let i = 0; i < siteData.reviews.length; i++) {
-            siteData.reviews[i].name = document.getElementById(`r_name_${i}`).value;
-            siteData.reviews[i].text = document.getElementById(`r_text_${i}`).value;
-            const hiddenImage = document.getElementById(`review_image_hidden_${i}`);
-            if (hiddenImage && hiddenImage.value) siteData.reviews[i].image = hiddenImage.value;
-        }
-        for (let i = 0; i < siteData.steps.length; i++) {
-            siteData.steps[i].name = document.getElementById(`st_name_${i}`).value;
-            siteData.steps[i].desc = document.getElementById(`st_desc_${i}`).value;
-        }
-        for (let i = 0; i < siteData.advantages.length; i++) {
-            siteData.advantages[i].name = document.getElementById(`adv_name_${i}`).value;
-            siteData.advantages[i].desc = document.getElementById(`adv_desc_${i}`).value;
-        }
-        for (let i = 0; i < siteData.shorts.length; i++) {
-            siteData.shorts[i].title = document.getElementById(`short_title_${i}`).value;
-            siteData.shorts[i].url = document.getElementById(`short_url_${i}`).value;
-            siteData.shorts[i].preview = document.getElementById(`short_preview_${i}`).value;
-        }
-        siteData.socials = {
-            vk: document.getElementById('soc_vk').value,
-            telegram: document.getElementById('soc_tg').value,
-            youtube: document.getElementById('soc_yt').value,
-            tiktok: document.getElementById('soc_tt').value,
-            instagram: document.getElementById('soc_ig').value
-        };
-        siteData.managerLinks = {
-            vk: document.getElementById('manager_vk').value,
-            tg: document.getElementById('manager_tg').value
-        };
-        localStorage.setItem("matoff_final_v34", JSON.stringify(siteData));
-        alert("✅ Сохранено! Страница перезагрузится.");
-        location.reload();
-    }
-
-    function resetAll() {
-        if (confirm("Сбросить всё?")) {
-            localStorage.setItem("matoff_final_v34", JSON.stringify(defaultData));
-            location.reload();
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
+    async function init() {
         createParticles();
-        renderHeroImage();
+        await loadDataFromSheets();
         renderCounters();
         renderServices();
         renderBuilds();
@@ -2173,13 +1944,11 @@
         renderSocialBlock();
         renderShorts();
         renderReviews();
+        renderPromo();
         initCalculator();
         initChat();
         initScrollTop();
-        initTheme(); // Тёмная тема по умолчанию + инициализация виджета Telegram
-        
-        setInterval(updatePromoTimer, 1000);
-        updatePromoTimer();
+        initTheme();
         
         checkVisibility();
         window.addEventListener('scroll', checkVisibility);
@@ -2216,14 +1985,12 @@
         });
         document.getElementById('adminLoginClose').addEventListener('click', () => hideAdminLogin());
         document.getElementById('logoutAdminBtn').addEventListener('click', () => hideAdminPanel());
-        document.getElementById('saveAllData').addEventListener('click', saveAll);
-        document.getElementById('resetToDefault').addEventListener('click', resetAll);
         
         const modal = document.getElementById('socialModal');
         document.getElementById('managerHeaderBtn').addEventListener('click', () => modal.style.display = 'flex');
         document.getElementById('closeModal').addEventListener('click', () => modal.style.display = 'none');
-        document.getElementById('modalVk').addEventListener('click', () => { window.open(siteData.managerLinks.vk, '_blank'); modal.style.display = 'none'; });
-        document.getElementById('modalTg').addEventListener('click', () => { window.open(siteData.managerLinks.tg, '_blank'); modal.style.display = 'none'; });
+        document.getElementById('modalVk').addEventListener('click', () => { window.open(siteData.socials?.вк || "#", '_blank'); modal.style.display = 'none'; });
+        document.getElementById('modalTg').addEventListener('click', () => { window.open(siteData.socials?.телеграм || "#", '_blank'); modal.style.display = 'none'; });
         
         let contactType = 'phone';
         document.querySelectorAll('.contact-type-btn').forEach(btn => {
@@ -2259,7 +2026,9 @@
             btn.textContent = original;
             btn.disabled = false;
         });
-    });
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
