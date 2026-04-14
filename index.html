@@ -534,9 +534,29 @@
     }
 
     async function sendToTelegram(name, contact, type, comment) {
-        let msg = `🆕 НОВАЯ ЗАЯВКА\n\n👤 ${name}\n📞 ${type}: ${contact}\n📝 ${comment || "—"}\n🕐 ${new Date().toLocaleString()}`;
-        try { await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: msg }) }); return true; } catch(e) { return false; }
+    // ПРОВЕРКА: если нет имени или контакта — НЕ ОТПРАВЛЯЕМ
+    if (!name || !contact || name === "" || contact === "") {
+        console.log("❌ Отмена: пустое имя или контакт");
+        return false;
     }
+    let msg = `🆕 НОВАЯ ЗАЯВКА\n\n👤 ${name}\n📞 ${type}: ${contact}\n📝 ${comment || "—"}\n🕐 ${new Date().toLocaleString()}`;
+    // ПРОВЕРКА: если сообщение пустое — НЕ ОТПРАВЛЯЕМ
+    if (!msg || msg === "") {
+        console.log("❌ Отмена: пустое сообщение");
+        return false;
+    }
+    try { 
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, { 
+            method: 'POST', 
+            headers: { 'Content-Type': 'application/json' }, 
+            body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: msg }) 
+        }); 
+        return true; 
+    } catch(e) { 
+        console.error("Ошибка отправки:", e);
+        return false; 
+    }
+}
 
     function initChat() {
         let messages = JSON.parse(localStorage.getItem('matoff_chat_messages')) || [];
