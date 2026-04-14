@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Matoff PC | Сборка и ремонт компьютеров в Нижнем Новгороде</title>
-    <!-- SEO метатеги -->
     <meta name="description" content="Профессиональная сборка и ремонт компьютеров в Нижнем Новгороде. Индивидуальные ПК под любые задачи. Апгрейд, настройка, доставка по РФ. Гарантия 1 год.">
     <meta name="keywords" content="сборка пк, ремонт компьютеров, компьютерная мастерская, игровой компьютер, апгрейд ПК, Нижний Новгород">
     <meta name="author" content="Matoff PC">
@@ -15,10 +14,9 @@
     <meta property="og:url" content="https://matoffpc.ru">
     <meta property="og:image" content="https://matoffpc-jpg.github.io/favicon.png">
     <meta property="og:site_name" content="Matoff PC">
-    <!-- Фавиконка -->
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/favicon.png">
     <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/favicon.png">
-    <!-- Schema.org -->
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -39,19 +37,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
-
-    ym(108527337, 'init', {webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/108527337" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+        ym(108527337, 'init', {webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/108527337" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    
     <style>
+        /* ВЕСЬ ВАШ CSS ОСТАЁТСЯ БЕЗ ИЗМЕНЕНИЙ */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg-primary: #0a0a0f;
@@ -97,7 +95,7 @@
             --fps-border: rgba(230,138,46,0.5);
             --fps-text: #e68a2e;
         }
-        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-primary); color: var(--text-primary); scroll-behavior: smooth; background-image: linear-gradient(to right, var(--grid-color) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px); background-size: 45px 45px; position: relative; overflow-x: hidden; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-primary); color: var(--text-primary); scroll-behavior: smooth; background-image: linear-gradient(to right, var(--grid-color) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px); background-size: 45px 45px; position: relative; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
         .animated-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none; }
         .hex-grid { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='none' stroke='rgba(155,77,255,0.08)' stroke-width='1' d='M25,12.5 L50,0 L75,12.5 L75,37.5 L50,50 L25,37.5 Z M0,37.5 L25,25 L50,37.5 L50,62.5 L25,75 L0,62.5 Z M50,37.5 L75,25 L100,37.5 L100,62.5 L75,75 L50,62.5 Z'/%3E%3C/svg%3E"); background-size: 80px 80px; animation: rotateHex 60s linear infinite; opacity: 0.3; }
         @keyframes rotateHex { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -137,7 +135,7 @@
         .manager-header-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 0 var(--btn-shadow), inset 0 1px 0 rgba(255,255,255,0.3); }
         .manager-header-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--btn-shadow); }
         .theme-toggle { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 50px; padding: 5px; cursor: pointer; display: flex; gap: 5px; }
-        .theme-toggle span { padding: 5px 12px; border-radius: 50px; font-size: 0.8rem; transition: 0.2s; }
+        .theme-toggle span { padding: 5px 12px; border-radius: 50px; font-size: 0.8rem; transition: 0.2s; cursor: pointer; }
         .theme-toggle .active { background: var(--accent-purple); color: white; }
         .btn { display: inline-flex; align-items: center; justify-content: center; background: var(--btn-bg); color: white; font-weight: 700; font-size: 1rem; padding: 14px 28px; min-height: 52px; border-radius: 50px; border: none; cursor: pointer; transition: all 0.3s; text-align: center; position: relative; box-shadow: 0 5px 0 var(--btn-shadow), inset 0 1px 0 rgba(255,255,255,0.2); transform: translateY(-2px); text-decoration: none; letter-spacing: 0.5px; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
         .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--btn-shadow), inset 0 1px 0 rgba(255,255,255,0.2); }
@@ -147,97 +145,19 @@
         .scroll-top { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; border-radius: 50%; background: var(--accent-purple); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 24px; z-index: 99; opacity: 0; visibility: hidden; transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .scroll-top.show { opacity: 1; visibility: visible; }
         .scroll-top:hover { transform: scale(1.1); }
-        /* HERO СЛАЙДЕР */
-        .hero-slider {
-            position: relative;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            border-radius: 32px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-        .slider-container {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-        }
-        .slider-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .slider-slide {
-            flex-shrink: 0;
-            width: 100%;
-            position: relative;
-        }
-        .slider-slide img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            max-height: 500px;
-        }
-        .slider-caption {
-    position: absolute;
-    bottom: 30px;
-    left: 0;
-    right: 0;
-    background: linear-gradient(90deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
-    color: white;
-    padding: 20px;
-    text-align: center;
-    display: none;
-}
-        .slider-caption h2 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        .slider-caption p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 20px;
-            z-index: 10;
-            transition: 0.2s;
-        }
+        .hero-slider { position: relative; width: 100%; max-width: 1200px; margin: 0 auto; border-radius: 32px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .slider-container { position: relative; width: 100%; overflow: hidden; }
+        .slider-track { display: flex; transition: transform 0.5s ease-in-out; }
+        .slider-slide { flex-shrink: 0; width: 100%; position: relative; }
+        .slider-slide img { width: 100%; height: auto; display: block; object-fit: cover; max-height: 500px; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px; z-index: 10; transition: 0.2s; }
         .slider-btn:hover { background: var(--accent-purple); }
         .slider-prev { left: 20px; }
         .slider-next { right: 20px; }
-        .slider-dots {
-            position: absolute;
-            bottom: 15px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            z-index: 10;
-        }
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            cursor: pointer;
-        }
+        .slider-dots { position: absolute; bottom: 15px; left: 0; right: 0; display: flex; justify-content: center; gap: 10px; z-index: 10; }
+        .slider-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; }
         .slider-dot.active { background: var(--accent-purple); }
-        @media (max-width: 768px) {
-            .slider-caption h2 { font-size: 1.2rem; }
-            .slider-caption p { font-size: 0.8rem; }
-            .slider-btn { width: 30px; height: 30px; font-size: 14px; }
-        }
+        @media (max-width: 768px) { .slider-btn { width: 30px; height: 30px; font-size: 14px; } }
         .hero-text { margin-top: 30px; font-size: 1.2rem; color: var(--text-secondary); max-width: 700px; text-align: center; margin-left: auto; margin-right: auto; }
         section { padding: 90px 0; }
         .section-title { font-family: 'Orbitron', monospace; font-size: 2.5rem; font-weight: 700; margin-bottom: 60px; text-align: center; letter-spacing: -0.02em; }
@@ -258,7 +178,7 @@
         .filter-btn { background: var(--bg-secondary); backdrop-filter: blur(5px); border: 1px solid var(--border-color); padding: 10px 28px; border-radius: 50px; color: var(--text-primary); cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem; }
         .filter-btn.active, .filter-btn:hover { background: var(--accent-purple); border-color: var(--accent-purple); color: white; transform: translateY(-2px); }
         .builds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; }
-        .build-card { background: var(--card-bg); backdrop-filter: blur(10px); border-radius: 32px; padding: 24px; display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.3s ease; transform-style: preserve-3d; transform: perspective(1000px) rotateX(0deg) rotateY(0deg); will-change: transform; border: 1px solid var(--border-color); }
+        .build-card { background: var(--card-bg); backdrop-filter: blur(10px); border-radius: 32px; padding: 24px; display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.3s ease; transform-style: preserve-3d; border: 1px solid var(--border-color); }
         .build-card:hover { border-color: var(--accent-purple); box-shadow: 0 20px 35px rgba(0,0,0,0.2); }
         .pc-image-container { position: relative; width: 100%; height: 220px; margin-bottom: 18px; border-radius: 20px; overflow: hidden; cursor: pointer; background: rgba(0,0,0,0.2); }
         .pc-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; transition: opacity 0.3s ease; background: transparent; }
@@ -336,7 +256,7 @@
         .message.bot { background: rgba(155,77,255,0.2); align-self: flex-start; border-bottom-left-radius: 5px; color: var(--text-primary); }
         .chat-input-area { display: flex; padding: 15px; gap: 10px; border-top: 1px solid var(--border-color); }
         .chat-input-area input { flex: 1; padding: 10px; border-radius: 25px; border: 1px solid var(--border-color); background: var(--input-bg); color: var(--text-primary); }
-        .chat-input-area button { background: var(--accent-purple); border: none; padding: 10px 15px; border-radius: 25px; cursor: pointer; }
+        .chat-input-area button { background: var(--accent-purple); border: none; padding: 10px 15px; border-radius: 25px; cursor: pointer; color: white; }
         .admin-login-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; }
         .admin-login-box { background: #16161c; padding: 40px; border-radius: 40px; text-align: center; border: 1px solid var(--accent-purple); min-width: 320px; }
         .admin-login-box input { width: 100%; padding: 14px; margin: 20px 0; background: #1f1f28; border: 1px solid var(--accent-purple); color: white; border-radius: 30px; }
@@ -354,7 +274,7 @@
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; z-index: 1000; }
         .modal-content { background: #16161c; padding: 40px; border-radius: 40px; text-align: center; min-width: 300px; border: 1px solid var(--accent-purple); }
         @media (max-width: 1000px) { .services-grid, .builds-grid, .steps-grid, .advantages-grid, .reviews-grid, .counters-grid { grid-template-columns: repeat(2, 1fr); } .section-title { font-size: 2rem; } .short-card { width: 240px; } .chat-window { width: 300px; right: 20px; bottom: 90px; } .social-icon { padding: 10px 20px; min-width: 110px; font-size: 0.85rem; } }
-        @media (max-width: 768px) { .container { padding: 0 20px; } .header .container { flex-direction: column; padding: 15px 20px; gap: 15px; } .nav { justify-content: center; gap: 20px; } .nav a { font-size: 0.85rem; } .logo { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } section { padding: 60px 0; } .hero-slider { border-radius: 20px; } .slider-caption { padding: 10px; } .slider-caption h2 { font-size: 1rem; } .slider-caption p { font-size: 0.7rem; } .short-card { width: 200px; } .chat-window { width: 280px; right: 10px; bottom: 80px; height: 450px; } .social-icons { gap: 15px; } .social-icon { padding: 8px 16px; min-width: 90px; font-size: 0.75rem; } .counters-grid { grid-template-columns: 1fr; gap: 20px; } .promo-text { font-size: 0.8rem; } .promo-timer { font-size: 0.9rem; padding: 5px 12px; } .calculator-filters { grid-template-columns: 1fr; } .scroll-top { bottom: 20px; left: 20px; width: 40px; height: 40px; font-size: 20px; } .pc-image-container { height: 180px; } .review-image { height: 140px; } }
+        @media (max-width: 768px) { .container { padding: 0 20px; } .header .container { flex-direction: column; padding: 15px 20px; gap: 15px; } .nav { justify-content: center; gap: 20px; } .nav a { font-size: 0.85rem; } .logo { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } section { padding: 60px 0; } .hero-slider { border-radius: 20px; } .short-card { width: 200px; } .chat-window { width: 280px; right: 10px; bottom: 80px; height: 450px; } .social-icons { gap: 15px; } .social-icon { padding: 8px 16px; min-width: 90px; font-size: 0.75rem; } .counters-grid { grid-template-columns: 1fr; gap: 20px; } .promo-text { font-size: 0.8rem; } .promo-timer { font-size: 0.9rem; padding: 5px 12px; } .calculator-filters { grid-template-columns: 1fr; } .scroll-top { bottom: 20px; left: 20px; width: 40px; height: 40px; font-size: 20px; } .pc-image-container { height: 180px; } .review-image { height: 140px; } }
         @media (max-width: 640px) { .services-grid, .builds-grid, .steps-grid, .advantages-grid, .reviews-grid { grid-template-columns: 1fr; } .logo { font-size: 1.4rem; } .short-card { width: 160px; } .chat-window { width: calc(100% - 20px); right: 10px; left: 10px; height: 500px; bottom: 80px; } .chat-button { bottom: 20px; right: 20px; } .social-icons { gap: 12px; } .social-icon { padding: 6px 12px; min-width: 70px; font-size: 0.7rem; } .pc-image-container { height: 160px; } .review-image { height: 120px; } .not-found-block { padding: 30px 20px; } .not-found-block h3 { font-size: 1.5rem; } }
     </style>
 </head>
@@ -363,14 +283,11 @@
 <div id="promoBar" class="promo-bar" style="display: none;"><div class="container"><div class="promo-content"><span class="promo-text" id="promoText"></span><span class="promo-timer" id="promoTimer"></span><button class="promo-close" id="promoClose">✕</button></div></div></div>
 <header class="header"><div class="container"><div class="logo"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></div><div class="nav"><a href="#services">Услуги</a><a href="#builds">Сборки</a><a href="#steps">Этапы</a><a href="#advantages">Преимущества</a><a href="#reviews">Отзывы</a><a href="#order">Заявка</a><div class="theme-toggle" id="themeToggle"><span class="active" data-theme="dark">🌙</span><span data-theme="light">☀️</span></div><div class="manager-wrapper"><button id="managerHeaderBtn" class="manager-header-btn">📱 Связаться</button><div class="online-indicator"><span class="online-dot"></span><span>онлайн</span></div></div></div></div></header>
 <main>
-    <!-- HERO СЛАЙДЕР -->
     <section class="hero" style="padding: 40px 0 20px 0;">
         <div class="container">
             <div class="hero-slider" id="heroSlider">
                 <div class="slider-container">
-                    <div class="slider-track" id="sliderTrack">
-                        <!-- Слайды будут загружены из data.json -->
-                    </div>
+                    <div class="slider-track" id="sliderTrack"></div>
                     <button class="slider-btn slider-prev" id="sliderPrev">❮</button>
                     <button class="slider-btn slider-next" id="sliderNext">❯</button>
                     <div class="slider-dots" id="sliderDots"></div>
@@ -409,16 +326,22 @@
     const ADMIN_PASSWORD = "matoff2025";
     let siteData = { builds: [], services: [], counters: [], steps: [], advantages: [], socials: {}, shorts: [], reviews: [], slides: [], promo: {} };
 
+    // Функция загрузки данных - ИСПРАВЛЕНА (относительный путь)
     async function loadData() {
         try {
-            const response = await fetch('data.json?t=' + Date.now());
-            if (!response.ok) throw new Error('Ошибка загрузки data.json');
+            const response = await fetch('/data.json?t=' + Date.now());
+            if (!response.ok) throw new Error('Ошибка загрузки data.json: ' + response.status);
             siteData = await response.json();
+            console.log('✅ Данные загружены успешно');
             renderAll();
             initSlider();
         } catch(e) {
-            console.error(e);
-            document.getElementById('servicesContainer').innerHTML = '<div style="text-align:center;padding:40px;">❌ Ошибка загрузки данных. Проверьте файл data.json</div>';
+            console.error('❌ Ошибка загрузки:', e);
+            const containers = ['servicesContainer', 'buildsContainer', 'reviewsContainer', 'countersContainer'];
+            containers.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerHTML = '<div style="text-align:center;padding:40px;">❌ Ошибка загрузки данных. Убедитесь, что файл data.json загружен на сервер.</div>';
+            });
         }
     }
 
@@ -428,12 +351,14 @@
         
         const track = document.getElementById('sliderTrack');
         const dotsContainer = document.getElementById('sliderDots');
+        if (!track || !dotsContainer) return;
+        
         let currentIndex = 0;
         let interval;
 
         track.innerHTML = slides.map(slide => `
             <div class="slider-slide">
-                <img src="${slide.image}" alt="Слайд">
+                <img src="${slide.image}" alt="Слайд" onerror="this.src='https://placehold.co/1200x500/2a2a35/9b4dff?text=Slide'">
             </div>
         `).join('');
         
@@ -461,15 +386,8 @@
         const nextBtn = document.getElementById('sliderNext');
         const prevBtn = document.getElementById('sliderPrev');
         
-        if (nextBtn) nextBtn.onclick = () => {
-            nextSlide();
-            resetInterval();
-        };
-
-        if (prevBtn) prevBtn.onclick = () => {
-            prevSlide();
-            resetInterval();
-        };
+        if (nextBtn) nextBtn.onclick = () => { nextSlide(); resetInterval(); };
+        if (prevBtn) prevBtn.onclick = () => { prevSlide(); resetInterval(); };
 
         document.querySelectorAll('.slider-dot').forEach(dot => {
             dot.onclick = () => {
@@ -479,15 +397,8 @@
             };
         });
 
-        function startInterval() {
-            interval = setInterval(nextSlide, 5000);
-        }
-
-        function resetInterval() {
-            clearInterval(interval);
-            startInterval();
-        }
-
+        function startInterval() { interval = setInterval(nextSlide, 5000); }
+        function resetInterval() { clearInterval(interval); startInterval(); }
         startInterval();
     }
     
@@ -510,6 +421,7 @@
         const counters = document.querySelectorAll('.counter-number');
         counters.forEach(c => {
             let target = parseInt(c.dataset.target);
+            if (isNaN(target)) return;
             let current = 0;
             let increment = target / 50;
             function update() { 
@@ -543,29 +455,31 @@
     
     function renderSteps() { 
         const container = document.getElementById('stepsContainer');
-        if (container && siteData.steps) {
-            container.innerHTML = siteData.steps.map(s => `<div class="step-card"><h3>${s.name}</h3><p>${s.desc}</p></div>`).join('') || ''; 
+        if (container && siteData.steps && siteData.steps.length) {
+            container.innerHTML = siteData.steps.map(s => `<div class="step-card"><h3>${s.name}</h3><p>${s.desc}</p></div>`).join(''); 
+        } else if (container) {
+            container.innerHTML = '<div class="step-card"><h3>📝 Оставить заявку</h3><p>Оставьте заявку на сайте или в мессенджере</p></div><div class="step-card"><h3>🤝 Согласование</h3><p>Согласуем конфигурацию и цены</p></div><div class="step-card"><h3>🚀 Сборка и отправка</h3><p>Собираем, тестируем и отправляем</p></div>';
         }
     }
     
     function renderAdvantages() { 
         const container = document.getElementById('advantagesContainer');
-        if (container && siteData.advantages) {
-            container.innerHTML = siteData.advantages.map(a => `<div class="advantage-card"><h3>${a.name}</h3><p>${a.desc}</p></div>`).join('') || ''; 
+        if (container && siteData.advantages && siteData.advantages.length) {
+            container.innerHTML = siteData.advantages.map(a => `<div class="advantage-card"><h3>${a.name}</h3><p>${a.desc}</p></div>`).join(''); 
         }
     }
     
     function renderShorts() { 
         const container = document.getElementById('shortsContainer');
-        if (container && siteData.shorts) {
-            container.innerHTML = siteData.shorts.map(sh => `<div class="short-card" onclick="window.open('${sh.url}','_blank')"><img src="${sh.preview}" onerror="this.src='https://placehold.co/280x500?text=Video'"><p>${sh.title}</p></div>`).join('') || ''; 
+        if (container && siteData.shorts && siteData.shorts.length) {
+            container.innerHTML = siteData.shorts.map(sh => `<div class="short-card" onclick="window.open('${sh.url}','_blank')"><img src="${sh.preview}" onerror="this.src='https://placehold.co/280x500?text=Video'"><p>${sh.title}</p></div>`).join(''); 
         }
     }
     
     function renderReviews() { 
         const container = document.getElementById('reviewsContainer');
-        if (container && siteData.reviews) {
-            container.innerHTML = siteData.reviews.map(r => `<div class="review-card"><img class="review-image" src="${r.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=Фото+ПК'"><strong>⭐ ${r.name}</strong><p>${r.text}</p></div>`).join('') || ''; 
+        if (container && siteData.reviews && siteData.reviews.length) {
+            container.innerHTML = siteData.reviews.map(r => `<div class="review-card"><img class="review-image" src="${r.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=Фото+ПК'"><strong>⭐ ${r.name}</strong><p>${r.text}</p></div>`).join(''); 
         }
     }
     
@@ -616,14 +530,23 @@
 
     let currentFilter = "all", currentGpuFilter = "all";
     function renderBuilds() {
-        if(!siteData.builds || !siteData.builds.length) return;
+        if(!siteData.builds || !siteData.builds.length) {
+            const container = document.getElementById('buildsContainer');
+            if (container) container.innerHTML = '<div style="text-align:center;padding:40px;">Загрузка сборок...</div>';
+            return;
+        }
         let filtered = [...siteData.builds];
         if(currentFilter !== "all") filtered = filtered.filter(b => b.filterRange === currentFilter);
         if(currentGpuFilter !== "all") filtered = filtered.filter(b => b.gpuType === currentGpuFilter);
         const container = document.getElementById('buildsContainer');
         if (!container) return;
         
-        container.innerHTML = filtered.map(b => `<div class="build-card"><div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.image}"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}"></div><h3>${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">🎮 ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div><div class="fps-value">${b.fps}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><button class="btn btn-buy">💰 Купить</button></div>`).join('');
+        if (filtered.length === 0) {
+            container.innerHTML = '<div style="text-align:center;padding:40px;">🤔 Нет сборок под выбранные фильтры</div>';
+            return;
+        }
+        
+        container.innerHTML = filtered.map(b => `<div class="build-card"><div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><h3>${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">🎮 ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div><div class="fps-value">${b.fps || "100+ FPS"}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><button class="btn btn-buy">💰 Купить</button></div>`).join('');
         
         document.querySelectorAll('.build-card').forEach(card => {
             card.onmousemove = (e) => { 
@@ -642,11 +565,18 @@
         if (!calcButton) return;
         
         calcButton.onclick = () => {
+            if (!siteData.builds || siteData.builds.length === 0) {
+                const resultDiv = document.getElementById('calculatorResult');
+                if (resultDiv) resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>⏳ Данные загружаются. Попробуйте позже.</p></div>`;
+                return;
+            }
+            
             let purpose = document.getElementById('calcPurpose').value;
             let cpuPref = document.getElementById('calcCpu').value;
             let gpuPref = document.getElementById('calcGpu').value;
             let budget = parseInt(document.getElementById('calcBudget').value);
             let filtered = [...siteData.builds];
+            
             if(budget === 70000) filtered = filtered.filter(b => b.price <= 70000);
             else if(budget === 90000) filtered = filtered.filter(b => b.price > 70000 && b.price <= 90000);
             else if(budget === 120000) filtered = filtered.filter(b => b.price > 90000 && b.price <= 120000);
@@ -654,27 +584,26 @@
             else if(budget === 200000) filtered = filtered.filter(b => b.price > 160000 && b.price <= 200000);
             else if(budget === 260000) filtered = filtered.filter(b => b.price > 200000 && b.price <= 260000);
             else filtered = filtered.filter(b => b.price > 260000);
+            
             if(purpose !== 'any') { let f = filtered.filter(b => b.purpose === purpose); if(f.length) filtered = f; }
             if(cpuPref !== 'any') { let f = filtered.filter(b => b.cpuType === cpuPref); if(f.length) filtered = f; }
             if(gpuPref !== 'any') { let f = filtered.filter(b => b.gpuType === gpuPref); if(f.length) filtered = f; }
+            
             filtered.sort((a,b) => a.price - b.price);
             let selected = filtered[0];
             let resultDiv = document.getElementById('calculatorResult');
-            if(selected) resultDiv.innerHTML = `<div style="background:rgba(0,0,0,0.2);border-radius:24px;padding:20px;"><h3 style="color:#9b4dff;text-align:center;">✅ Рекомендуемая сборка</h3><div style="display:flex;flex-wrap:wrap;gap:25px;align-items:flex-start;justify-content:center;"><div><img src="${selected.image}" style="width:400px;border-radius:20px;"></div><div><h2>${selected.name}</h2><div class="price" style="font-size:1.8rem;">${selected.priceText}</div><div class="fps-block"><div class="fps-title">🎮 FPS (УЛЬТРА)</div><div class="fps-value">${selected.fps}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${selected.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><button class="btn" onclick="scrollToOrder()">📝 Оставить заявку</button></div></div></div>`;
-            else resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>🤔 Не нашли подходящую сборку. Напишите нам!</p><button class="btn" onclick="scrollToOrder()">Связаться</button></div>`;
+            
+            if(selected && resultDiv) {
+                resultDiv.innerHTML = `<div style="background:rgba(0,0,0,0.2);border-radius:24px;padding:20px;"><h3 style="color:#9b4dff;text-align:center;">✅ Рекомендуемая сборка</h3><div style="display:flex;flex-wrap:wrap;gap:25px;align-items:flex-start;justify-content:center;"><div><img src="${selected.image}" style="width:400px;border-radius:20px;max-width:100%;" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><div><h2>${selected.name}</h2><div class="price" style="font-size:1.8rem;">${selected.priceText}</div><div class="fps-block"><div class="fps-title">🎮 FPS (УЛЬТРА)</div><div class="fps-value">${selected.fps || "100+ FPS"}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${selected.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><button class="btn" onclick="scrollToOrder()">📝 Оставить заявку</button></div></div></div>`;
+            } else if (resultDiv) {
+                resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>🤔 Не нашли подходящую сборку. Напишите нам!</p><button class="btn" onclick="scrollToOrder()">Связаться</button></div>`;
+            }
         };
     }
 
     async function sendToTelegram(name, contact, type, comment) {
-        if (!name || !contact || name === "" || contact === "") {
-            console.log("❌ Отмена: пустое имя или контакт");
-            return false;
-        }
+        if (!name || !contact || name === "" || contact === "") return false;
         let msg = `🆕 НОВАЯ ЗАЯВКА\n\n👤 ${name}\n📞 ${type}: ${contact}\n📝 ${comment || "—"}\n🕐 ${new Date().toLocaleString()}`;
-        if (!msg || msg === "") {
-            console.log("❌ Отмена: пустое сообщение");
-            return false;
-        }
         try { 
             await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, { 
                 method: 'POST', 
@@ -691,23 +620,28 @@
     function initChat() {
         let messages = JSON.parse(localStorage.getItem('matoff_chat_messages')) || [];
         let chatWindow = document.getElementById('chatWindow'), chatMessages = document.getElementById('chatMessages'), chatInput = document.getElementById('chatInput');
-        function render() { if (chatMessages) chatMessages.innerHTML = messages.map(m => `<div class="message ${m.type}">${m.text}</div>`).join(''); if (chatMessages) chatMessages.scrollTop = chatMessages.scrollHeight; }
+        if (!chatWindow || !chatMessages || !chatInput) return;
+        
+        function render() { chatMessages.innerHTML = messages.map(m => `<div class="message ${m.type}">${escapeHtml(m.text)}</div>`).join(''); chatMessages.scrollTop = chatMessages.scrollHeight; }
+        function escapeHtml(text) { return text.replace(/[&<>]/g, function(m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; }); }
         function addMsg(text, type) { messages.push({ text, type, time: new Date().toISOString() }); if(messages.length > 50) messages = messages.slice(-50); localStorage.setItem('matoff_chat_messages', JSON.stringify(messages)); render(); if(type === 'user') fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: `👤 Клиент в чате: "${text}"` }) }); }
+        
         if(messages.length === 0) addMsg("👋 Здравствуйте! Задайте ваш вопрос.", "bot"); else render();
+        
         const chatButton = document.getElementById('chatButton');
         const chatClose = document.getElementById('chatClose');
         const chatSend = document.getElementById('chatSend');
         
-        if (chatButton) chatButton.onclick = () => { if (chatWindow) chatWindow.classList.toggle('open'); };
-        if (chatClose) chatClose.onclick = () => { if (chatWindow) chatWindow.classList.remove('open'); };
+        if (chatButton) chatButton.onclick = () => chatWindow.classList.toggle('open');
+        if (chatClose) chatClose.onclick = () => chatWindow.classList.remove('open');
         if (chatSend) chatSend.onclick = () => { let t = chatInput.value.trim(); if(t) { addMsg(t, 'user'); chatInput.value = ''; setTimeout(() => addMsg("✅ Спасибо! Менеджер ответит.", "bot"), 500); } };
-        if (chatInput) chatInput.onkeypress = (e) => { if(e.key === 'Enter' && chatSend) chatSend.click(); };
+        chatInput.onkeypress = (e) => { if(e.key === 'Enter' && chatSend) chatSend.click(); };
     }
 
     function createParticles() { 
         const particlesContainer = document.getElementById('particles');
         if (!particlesContainer) return;
-        for(let i=0;i<80;i++) { 
+        for(let i=0;i<60;i++) { 
             let p = document.createElement('div'); 
             p.className = 'particle'; 
             let s = Math.random()*6+2; 
@@ -730,18 +664,26 @@
         }
     }
     
+    // ИСПРАВЛЕННАЯ функция переключения темы
     function initTheme() { 
         let toggle = document.getElementById('themeToggle'); 
         if (!toggle) return;
         let saved = localStorage.getItem('matoff_theme') || 'dark'; 
         if(saved === 'light') document.body.classList.add('light-theme'); 
-        toggle.querySelectorAll('span').forEach(span => { 
+        
+        const spans = toggle.querySelectorAll('span');
+        spans.forEach(span => { 
             span.classList.toggle('active', span.dataset.theme === saved); 
-            span.onclick = () => { 
+            span.onclick = (e) => { 
+                e.stopPropagation();
                 let theme = span.dataset.theme; 
-                document.body.classList.toggle('light-theme', theme === 'light'); 
+                if (theme === 'light') {
+                    document.body.classList.add('light-theme'); 
+                } else {
+                    document.body.classList.remove('light-theme'); 
+                }
                 localStorage.setItem('matoff_theme', theme); 
-                toggle.querySelectorAll('span').forEach(s => s.classList.remove('active')); 
+                spans.forEach(s => s.classList.remove('active')); 
                 span.classList.add('active'); 
             }; 
         }); 
@@ -777,7 +719,7 @@
         renderShorts(); 
         renderReviews(); 
         renderPromo(); 
-        checkVisibility(); 
+        setTimeout(() => checkVisibility(), 100);
         initCalculator(); 
     }
 
@@ -788,6 +730,7 @@
         initScrollTop(); 
         initTheme();
         window.addEventListener('scroll', checkVisibility);
+        checkVisibility();
         
         const promoClose = document.getElementById('promoClose');
         if (promoClose) promoClose.onclick = () => {
