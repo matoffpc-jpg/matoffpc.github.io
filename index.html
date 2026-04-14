@@ -427,6 +427,30 @@
     <section id="social"><div class="container"><h2 class="section-title fade-up">Мы в <span>соцсетях</span></h2><div class="social-block"><div class="social-icons" id="socialIconsContainer"></div></div></div></section>
     <section id="telegram"><div class="container"><h2 class="section-title fade-up">Актуальные <span>комплектующие в наличии</span></h2><div class="telegram-block"><h3>📢 Наш Telegram канал</h3><p style="margin-bottom: 15px;">Подписывайтесь, чтобы быть в курсе актуальных цен на комплектующие, периферию и готовые компьютеры</p><div class="telegram-preview"><img src="https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/telegram-preview.png" alt="Telegram канал Matoff PC" onerror="this.src='https://placehold.co/600x300/1a1a2a/9b4dff?text=Telegram'"></div><a href="https://t.me/matoffpctg" target="_blank" class="btn telegram-channel-link" style="display: inline-flex; margin-top: 20px;">📱 Перейти в Telegram канал</a></div></div></section>
     <section id="shorts"><div class="container"><h2 class="section-title fade-up">Видео <span>обзоры</span></h2><div id="shortsContainer" class="shorts-grid"></div></div></section>
+    
+    <!-- КОМПЛЕКТУЮЩИЕ В НАЛИЧИИ -->
+    <section id="components">
+        <div class="container">
+            <h2 class="section-title fade-up">Комплектующие <span>в наличии</span></h2>
+            <p style="text-align: center; margin-bottom: 30px; color: var(--text-secondary);">
+                🛠️ Видеокарты, процессоры, память и SSD — отправка по всей России
+            </p>
+            <div class="component-filters" id="componentFilters">
+                <button class="filter-btn active" data-category="all">Все</button>
+                <button class="filter-btn" data-category="gpu">🎮 Видеокарты</button>
+                <button class="filter-btn" data-category="cpu">🖥️ Процессоры</button>
+                <button class="filter-btn" data-category="ram">💾 Оперативная память</button>
+                <button class="filter-btn" data-category="ssd">⚡ SSD накопители</button>
+            </div>
+            <div class="components-grid" id="componentsContainer">
+                <div style="text-align: center; padding: 50px;">Загрузка комплектующих...</div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="cart.html" class="btn">🛒 Перейти в корзину (<span id="cartCount">0</span>)</a>
+            </div>
+        </div>
+    </section>
+    
     <section id="reviews"><div class="container"><h2 class="section-title fade-up">Клиенты <span>о нас</span></h2><div id="reviewsContainer" class="reviews-grid"></div><div class="avito-link"><a href="https://www.avito.ru/brands/i175782584/all?sellerId=87fa06f4eb5b06a0808aab70387c951e" target="_blank" class="btn">📱 Смотреть все отзывы на Авито</a></div></div></section>
     <section id="notFound"><div class="container"><div class="not-found-block fade-up"><h3>🤔 Не нашли свой идеальный ПК?</h3><p>Соберём компьютер специально под ваши задачи и бюджет</p><button class="btn" id="notFoundBtn">Связаться с менеджером</button></div></div></section>
     <section id="order"><div class="container"><h2 class="section-title fade-up">Оставить <span>заявку</span></h2><div class="order-form"><div class="contact-type-buttons"><div class="contact-type-btn active" data-contact="phone">📞 Телефон</div><div class="contact-type-btn" data-contact="tg">💬 Telegram</div><div class="contact-type-btn" data-contact="vk">📱 VK</div></div><form id="requestForm"><input type="text" id="clientName" placeholder="Ваше имя" required><div id="contactFieldContainer"><input type="tel" id="clientContact" placeholder="Номер телефона" required></div><textarea id="clientComment" rows="3" placeholder="Что вас интересует? (сборка, апгрейд, ремонт...)"></textarea><button type="submit" class="btn">📨 Отправить заявку</button></form><p style="font-size: 13px; text-align: center; margin-top: 20px; opacity: 0.7;">Менеджер свяжется с вами в течение 15 минут</p></div></div></section>
