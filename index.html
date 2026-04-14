@@ -276,6 +276,125 @@
         @media (max-width: 1000px) { .services-grid, .builds-grid, .steps-grid, .advantages-grid, .reviews-grid, .counters-grid { grid-template-columns: repeat(2, 1fr); } .section-title { font-size: 2rem; } .short-card { width: 240px; } .chat-window { width: 300px; right: 20px; bottom: 90px; } .social-icon { padding: 10px 20px; min-width: 110px; font-size: 0.85rem; } }
         @media (max-width: 768px) { .container { padding: 0 20px; } .header .container { flex-direction: column; padding: 15px 20px; gap: 15px; } .nav { justify-content: center; gap: 20px; } .nav a { font-size: 0.85rem; } .logo { font-size: 1.8rem; } .section-title { font-size: 1.8rem; } section { padding: 60px 0; } .hero-slider { border-radius: 20px; } .short-card { width: 200px; } .chat-window { width: 280px; right: 10px; bottom: 80px; height: 450px; } .social-icons { gap: 15px; } .social-icon { padding: 8px 16px; min-width: 90px; font-size: 0.75rem; } .counters-grid { grid-template-columns: 1fr; gap: 20px; } .promo-text { font-size: 0.8rem; } .promo-timer { font-size: 0.9rem; padding: 5px 12px; } .calculator-filters { grid-template-columns: 1fr; } .scroll-top { bottom: 20px; left: 20px; width: 40px; height: 40px; font-size: 20px; } .pc-image-container { height: 180px; } .review-image { height: 140px; } }
         @media (max-width: 640px) { .services-grid, .builds-grid, .steps-grid, .advantages-grid, .reviews-grid { grid-template-columns: 1fr; } .logo { font-size: 1.4rem; } .short-card { width: 160px; } .chat-window { width: calc(100% - 20px); right: 10px; left: 10px; height: 500px; bottom: 80px; } .chat-button { bottom: 20px; right: 20px; } .social-icons { gap: 12px; } .social-icon { padding: 6px 12px; min-width: 70px; font-size: 0.7rem; } .pc-image-container { height: 160px; } .review-image { height: 120px; } .not-found-block { padding: 30px 20px; } .not-found-block h3 { font-size: 1.5rem; } }
+                /* ========== СТИЛИ ДЛЯ КОМПЛЕКТУЮЩИХ ========== */
+        .component-filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+        .component-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .component-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(155,77,255,0.2);
+        }
+        .component-image {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 16px;
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+        }
+        .component-card h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        .component-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--price-color);
+            margin: 8px 0;
+        }
+        .component-condition {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            width: fit-content;
+            margin: 5px 0;
+        }
+        .component-condition.new {
+            background: rgba(0,200,100,0.2);
+            color: #00c864;
+            border: 1px solid rgba(0,200,100,0.3);
+        }
+        .component-condition.good {
+            background: rgba(255,170,68,0.2);
+            color: #ffaa44;
+            border: 1px solid rgba(255,170,68,0.3);
+        }
+        .component-condition.excellent {
+            background: rgba(155,77,255,0.2);
+            color: #9b4dff;
+            border: 1px solid rgba(155,77,255,0.3);
+        }
+        .component-desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin: 8px 0;
+            line-height: 1.4;
+            flex: 1;
+        }
+        .component-card .btn-add-to-cart {
+            margin-top: 12px;
+            width: 100%;
+            padding: 10px;
+            font-size: 0.85rem;
+        }
+        .cart-badge {
+            position: relative;
+        }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: var(--accent-orange);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 50%;
+            min-width: 18px;
+            text-align: center;
+        }
+        
+        @media (max-width: 1000px) {
+            .components-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .components-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .components-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
