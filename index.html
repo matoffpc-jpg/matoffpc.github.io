@@ -45,9 +45,9 @@
         m[i].l=1*new Date();
         for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
         k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108527337', 'ym');
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
 
-    ym(108527337, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    ym(108527337, 'init', {webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/108527337" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
@@ -407,7 +407,7 @@
     const TELEGRAM_BOT_TOKEN = "8787519466:AAFzHmOnPd7FFmEMzBs8c-NM9O8SQcvu0s0";
     const TELEGRAM_CHAT_ID = "1065465753";
     const ADMIN_PASSWORD = "matoff2025";
-    let siteData = {};
+    let siteData = { builds: [], services: [], counters: [], steps: [], advantages: [], socials: {}, shorts: [], reviews: [], slides: [], promo: {} };
 
     async function loadData() {
         try {
@@ -422,71 +422,75 @@
         }
     }
 
-function initSlider() {
-    const slides = siteData.slides || [];
-    if (slides.length === 0) return;
-    
-    const track = document.getElementById('sliderTrack');
-    const dotsContainer = document.getElementById('sliderDots');
-    let currentIndex = 0;
-    let interval;
+    function initSlider() {
+        const slides = siteData.slides || [];
+        if (slides.length === 0) return;
+        
+        const track = document.getElementById('sliderTrack');
+        const dotsContainer = document.getElementById('sliderDots');
+        let currentIndex = 0;
+        let interval;
 
-    track.innerHTML = slides.map(slide => `
-        <div class="slider-slide">
-            <img src="${slide.image}" alt="Слайд">
-        </div>
-    `).join('');
-    
-    dotsContainer.innerHTML = slides.map((_, i) => 
-        `<div class="slider-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>`
-    ).join('');
+        track.innerHTML = slides.map(slide => `
+            <div class="slider-slide">
+                <img src="${slide.image}" alt="Слайд">
+            </div>
+        `).join('');
+        
+        dotsContainer.innerHTML = slides.map((_, i) => 
+            `<div class="slider-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>`
+        ).join('');
 
-    function updateSlider() {
-        track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        document.querySelectorAll('.slider-dot').forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentIndex);
-        });
-    }
+        function updateSlider() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            document.querySelectorAll('.slider-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+        }
 
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateSlider();
-    }
-
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateSlider();
-    }
-
-    document.getElementById('sliderNext').onclick = () => {
-        nextSlide();
-        resetInterval();
-    };
-
-    document.getElementById('sliderPrev').onclick = () => {
-        prevSlide();
-        resetInterval();
-    };
-
-    document.querySelectorAll('.slider-dot').forEach(dot => {
-        dot.onclick = () => {
-            currentIndex = parseInt(dot.dataset.index);
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
             updateSlider();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
+
+        const nextBtn = document.getElementById('sliderNext');
+        const prevBtn = document.getElementById('sliderPrev');
+        
+        if (nextBtn) nextBtn.onclick = () => {
+            nextSlide();
             resetInterval();
         };
-    });
 
-    function startInterval() {
-        interval = setInterval(nextSlide, 5000);
-    }
+        if (prevBtn) prevBtn.onclick = () => {
+            prevSlide();
+            resetInterval();
+        };
 
-    function resetInterval() {
-        clearInterval(interval);
+        document.querySelectorAll('.slider-dot').forEach(dot => {
+            dot.onclick = () => {
+                currentIndex = parseInt(dot.dataset.index);
+                updateSlider();
+                resetInterval();
+            };
+        });
+
+        function startInterval() {
+            interval = setInterval(nextSlide, 5000);
+        }
+
+        function resetInterval() {
+            clearInterval(interval);
+            startInterval();
+        }
+
         startInterval();
     }
-
-    startInterval();
-}
+    
     function getSpecIcon(spec) {
         if(spec.includes("CPU")) return "🖥️";
         if(spec.includes("GPU")) return "🎮";
@@ -497,42 +501,147 @@ function initSlider() {
         return "🔧";
     }
 
-    function scrollToOrder() { document.getElementById('order').scrollIntoView({ behavior: 'smooth' }); }
+    function scrollToOrder() { 
+        const orderSection = document.getElementById('order');
+        if (orderSection) orderSection.scrollIntoView({ behavior: 'smooth' }); 
+    }
 
     function animateCounters() {
-        document.querySelectorAll('.counter-number').forEach(c => {
-            let target = parseInt(c.dataset.target), current = 0, increment = target/50;
-            function update() { current += increment; if(current < target) { c.textContent = Math.floor(current); requestAnimationFrame(update); } else c.textContent = target; }
+        const counters = document.querySelectorAll('.counter-number');
+        counters.forEach(c => {
+            let target = parseInt(c.dataset.target);
+            let current = 0;
+            let increment = target / 50;
+            function update() { 
+                current += increment; 
+                if(current < target) { 
+                    c.textContent = Math.floor(current); 
+                    requestAnimationFrame(update); 
+                } else c.textContent = target; 
+            }
             update();
         });
     }
 
-    function renderCounters() { if(!siteData.counters) return; document.getElementById('countersContainer').innerHTML = siteData.counters.map(c => `<div class="counter-card"><div class="counter-number" data-target="${c.number}">0</div><div class="counter-label">${c.label}</div></div>`).join(''); animateCounters(); }
-    function renderServices() { if(!siteData.services) return; document.getElementById('servicesContainer').innerHTML = siteData.services.map(s => `<div class="service-card"><h3>${s.name}</h3><p>${s.desc}</p><button class="btn service-btn">${s.btn}</button></div>`).join(''); document.querySelectorAll('.service-btn').forEach(btn => btn.onclick = scrollToOrder); }
-    function renderSteps() { document.getElementById('stepsContainer').innerHTML = siteData.steps?.map(s => `<div class="step-card"><h3>${s.name}</h3><p>${s.desc}</p></div>`).join('') || ''; }
-    function renderAdvantages() { document.getElementById('advantagesContainer').innerHTML = siteData.advantages?.map(a => `<div class="advantage-card"><h3>${a.name}</h3><p>${a.desc}</p></div>`).join('') || ''; }
-    function renderShorts() { document.getElementById('shortsContainer').innerHTML = siteData.shorts?.map(sh => `<div class="short-card" onclick="window.open('${sh.url}','_blank')"><img src="${sh.preview}" onerror="this.src='https://placehold.co/280x500?text=Video'"><p>${sh.title}</p></div>`).join('') || ''; }
-    function renderReviews() { document.getElementById('reviewsContainer').innerHTML = siteData.reviews?.map(r => `<div class="review-card"><img class="review-image" src="${r.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=Фото+ПК'"><strong>⭐ ${r.name}</strong><p>${r.text}</p></div>`).join('') || ''; }
-    function renderSocialBlock() { let s = siteData.socials || {}; let html = ''; if(s.vk) html += `<a href="${s.vk}" target="_blank" class="social-icon vk">📱 VK</a>`; if(s.telegram) html += `<a href="${s.telegram}" target="_blank" class="social-icon tg">💬 Telegram</a>`; if(s.youtube) html += `<a href="${s.youtube}" target="_blank" class="social-icon yt">📺 YouTube</a>`; if(s.tiktok) html += `<a href="${s.tiktok}" target="_blank" class="social-icon tt">🎵 TikTok</a>`; if(s.instagram) html += `<a href="${s.instagram}" target="_blank" class="social-icon ig">📷 Instagram</a>`; document.getElementById('socialIconsContainer').innerHTML = html; }
-    function renderPromo() { if(siteData.promo && siteData.promo.enabled) { document.getElementById('promoBar').style.display = 'block'; document.getElementById('promoText').textContent = siteData.promo.text; startTimer(siteData.promo.endDate); } else { document.getElementById('promoBar').style.display = 'none'; } }
-    function startTimer(endDate) { if(!endDate) return; let end = new Date(endDate); function update() { let diff = end - new Date(); if(diff <= 0) { document.getElementById('promoBar').style.display = 'none'; return; } let d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000); document.getElementById('promoTimer').textContent = `${d}д ${h}ч ${m}м ${s}с`; } update(); setInterval(update, 1000); }
+    function renderCounters() { 
+        if(!siteData.counters || !siteData.counters.length) return; 
+        const container = document.getElementById('countersContainer');
+        if (container) {
+            container.innerHTML = siteData.counters.map(c => `<div class="counter-card"><div class="counter-number" data-target="${c.number}">0</div><div class="counter-label">${c.label}</div></div>`).join(''); 
+            animateCounters(); 
+        }
+    }
+    
+    function renderServices() { 
+        if(!siteData.services || !siteData.services.length) return; 
+        const container = document.getElementById('servicesContainer');
+        if (container) {
+            container.innerHTML = siteData.services.map(s => `<div class="service-card"><h3>${s.name}</h3><p>${s.desc}</p><button class="btn service-btn">${s.btn}</button></div>`).join(''); 
+            document.querySelectorAll('.service-btn').forEach(btn => btn.onclick = scrollToOrder); 
+        }
+    }
+    
+    function renderSteps() { 
+        const container = document.getElementById('stepsContainer');
+        if (container && siteData.steps) {
+            container.innerHTML = siteData.steps.map(s => `<div class="step-card"><h3>${s.name}</h3><p>${s.desc}</p></div>`).join('') || ''; 
+        }
+    }
+    
+    function renderAdvantages() { 
+        const container = document.getElementById('advantagesContainer');
+        if (container && siteData.advantages) {
+            container.innerHTML = siteData.advantages.map(a => `<div class="advantage-card"><h3>${a.name}</h3><p>${a.desc}</p></div>`).join('') || ''; 
+        }
+    }
+    
+    function renderShorts() { 
+        const container = document.getElementById('shortsContainer');
+        if (container && siteData.shorts) {
+            container.innerHTML = siteData.shorts.map(sh => `<div class="short-card" onclick="window.open('${sh.url}','_blank')"><img src="${sh.preview}" onerror="this.src='https://placehold.co/280x500?text=Video'"><p>${sh.title}</p></div>`).join('') || ''; 
+        }
+    }
+    
+    function renderReviews() { 
+        const container = document.getElementById('reviewsContainer');
+        if (container && siteData.reviews) {
+            container.innerHTML = siteData.reviews.map(r => `<div class="review-card"><img class="review-image" src="${r.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=Фото+ПК'"><strong>⭐ ${r.name}</strong><p>${r.text}</p></div>`).join('') || ''; 
+        }
+    }
+    
+    function renderSocialBlock() { 
+        let s = siteData.socials || {}; 
+        let html = ''; 
+        if(s.vk) html += `<a href="${s.vk}" target="_blank" class="social-icon vk">📱 VK</a>`; 
+        if(s.telegram) html += `<a href="${s.telegram}" target="_blank" class="social-icon tg">💬 Telegram</a>`; 
+        if(s.youtube) html += `<a href="${s.youtube}" target="_blank" class="social-icon yt">📺 YouTube</a>`; 
+        if(s.tiktok) html += `<a href="${s.tiktok}" target="_blank" class="social-icon tt">🎵 TikTok</a>`; 
+        if(s.instagram) html += `<a href="${s.instagram}" target="_blank" class="social-icon ig">📷 Instagram</a>`; 
+        const container = document.getElementById('socialIconsContainer');
+        if (container) container.innerHTML = html; 
+    }
+    
+    function renderPromo() { 
+        if(siteData.promo && siteData.promo.enabled) { 
+            const promoBar = document.getElementById('promoBar');
+            if (promoBar) {
+                promoBar.style.display = 'block'; 
+                const promoText = document.getElementById('promoText');
+                if (promoText) promoText.textContent = siteData.promo.text; 
+                startTimer(siteData.promo.endDate); 
+            }
+        } else { 
+            const promoBar = document.getElementById('promoBar');
+            if (promoBar) promoBar.style.display = 'none'; 
+        } 
+    }
+    
+    function startTimer(endDate) { 
+        if(!endDate) return; 
+        let end = new Date(endDate); 
+        function update() { 
+            let diff = end - new Date(); 
+            if(diff <= 0) { 
+                const promoBar = document.getElementById('promoBar');
+                if (promoBar) promoBar.style.display = 'none'; 
+                return; 
+            } 
+            let d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000); 
+            const promoTimer = document.getElementById('promoTimer');
+            if (promoTimer) promoTimer.textContent = `${d}д ${h}ч ${m}м ${s}с`; 
+        } 
+        update(); 
+        setInterval(update, 1000); 
+    }
 
     let currentFilter = "all", currentGpuFilter = "all";
     function renderBuilds() {
-        if(!siteData.builds) return;
+        if(!siteData.builds || !siteData.builds.length) return;
         let filtered = [...siteData.builds];
         if(currentFilter !== "all") filtered = filtered.filter(b => b.filterRange === currentFilter);
         if(currentGpuFilter !== "all") filtered = filtered.filter(b => b.gpuType === currentGpuFilter);
-        document.getElementById('buildsContainer').innerHTML = filtered.map(b => `<div class="build-card"><div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.image}"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}"></div><h3>${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">🎮 ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div><div class="fps-value">${b.fps}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><button class="btn btn-buy">💰 Купить</button></div>`).join('');
+        const container = document.getElementById('buildsContainer');
+        if (!container) return;
+        
+        container.innerHTML = filtered.map(b => `<div class="build-card"><div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.image}"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}"></div><h3>${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">🎮 ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div><div class="fps-value">${b.fps}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><button class="btn btn-buy">💰 Купить</button></div>`).join('');
+        
         document.querySelectorAll('.build-card').forEach(card => {
-            card.onmousemove = (e) => { let r = card.getBoundingClientRect(); let x = e.clientX - r.left, y = e.clientY - r.top; let rx = (y - r.height/2)/35, ry = (r.width/2 - x)/35; card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg)`; };
+            card.onmousemove = (e) => { 
+                let r = card.getBoundingClientRect(); 
+                let x = e.clientX - r.left, y = e.clientY - r.top; 
+                let rx = (y - r.height/2)/35, ry = (r.width/2 - x)/35; 
+                card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg)`; 
+            };
             card.onmouseleave = () => card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
         });
         document.querySelectorAll('.btn-buy').forEach(btn => btn.onclick = scrollToOrder);
     }
 
     function initCalculator() {
-        document.getElementById('calcButton').onclick = () => {
+        const calcButton = document.getElementById('calcButton');
+        if (!calcButton) return;
+        
+        calcButton.onclick = () => {
             let purpose = document.getElementById('calcPurpose').value;
             let cpuPref = document.getElementById('calcCpu').value;
             let gpuPref = document.getElementById('calcGpu').value;
@@ -557,72 +666,232 @@ function initSlider() {
     }
 
     async function sendToTelegram(name, contact, type, comment) {
-    // ПРОВЕРКА: если нет имени или контакта — НЕ ОТПРАВЛЯЕМ
-    if (!name || !contact || name === "" || contact === "") {
-        console.log("❌ Отмена: пустое имя или контакт");
-        return false;
+        if (!name || !contact || name === "" || contact === "") {
+            console.log("❌ Отмена: пустое имя или контакт");
+            return false;
+        }
+        let msg = `🆕 НОВАЯ ЗАЯВКА\n\n👤 ${name}\n📞 ${type}: ${contact}\n📝 ${comment || "—"}\n🕐 ${new Date().toLocaleString()}`;
+        if (!msg || msg === "") {
+            console.log("❌ Отмена: пустое сообщение");
+            return false;
+        }
+        try { 
+            await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: msg }) 
+            }); 
+            return true; 
+        } catch(e) { 
+            console.error("Ошибка отправки:", e);
+            return false; 
+        }
     }
-    let msg = `🆕 НОВАЯ ЗАЯВКА\n\n👤 ${name}\n📞 ${type}: ${contact}\n📝 ${comment || "—"}\n🕐 ${new Date().toLocaleString()}`;
-    // ПРОВЕРКА: если сообщение пустое — НЕ ОТПРАВЛЯЕМ
-    if (!msg || msg === "") {
-        console.log("❌ Отмена: пустое сообщение");
-        return false;
-    }
-    try { 
-        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, { 
-            method: 'POST', 
-            headers: { 'Content-Type': 'application/json' }, 
-            body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: msg }) 
-        }); 
-        return true; 
-    } catch(e) { 
-        console.error("Ошибка отправки:", e);
-        return false; 
-    }
-}
 
     function initChat() {
         let messages = JSON.parse(localStorage.getItem('matoff_chat_messages')) || [];
         let chatWindow = document.getElementById('chatWindow'), chatMessages = document.getElementById('chatMessages'), chatInput = document.getElementById('chatInput');
-        function render() { chatMessages.innerHTML = messages.map(m => `<div class="message ${m.type}">${m.text}</div>`).join(''); chatMessages.scrollTop = chatMessages.scrollHeight; }
+        function render() { if (chatMessages) chatMessages.innerHTML = messages.map(m => `<div class="message ${m.type}">${m.text}</div>`).join(''); if (chatMessages) chatMessages.scrollTop = chatMessages.scrollHeight; }
         function addMsg(text, type) { messages.push({ text, type, time: new Date().toISOString() }); if(messages.length > 50) messages = messages.slice(-50); localStorage.setItem('matoff_chat_messages', JSON.stringify(messages)); render(); if(type === 'user') fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: `👤 Клиент в чате: "${text}"` }) }); }
         if(messages.length === 0) addMsg("👋 Здравствуйте! Задайте ваш вопрос.", "bot"); else render();
-        document.getElementById('chatButton').onclick = () => chatWindow.classList.toggle('open');
-        document.getElementById('chatClose').onclick = () => chatWindow.classList.remove('open');
-        document.getElementById('chatSend').onclick = () => { let t = chatInput.value.trim(); if(t) { addMsg(t, 'user'); chatInput.value = ''; setTimeout(() => addMsg("✅ Спасибо! Менеджер ответит.", "bot"), 500); } };
-        chatInput.onkeypress = (e) => { if(e.key === 'Enter') document.getElementById('chatSend').click(); };
+        const chatButton = document.getElementById('chatButton');
+        const chatClose = document.getElementById('chatClose');
+        const chatSend = document.getElementById('chatSend');
+        
+        if (chatButton) chatButton.onclick = () => { if (chatWindow) chatWindow.classList.toggle('open'); };
+        if (chatClose) chatClose.onclick = () => { if (chatWindow) chatWindow.classList.remove('open'); };
+        if (chatSend) chatSend.onclick = () => { let t = chatInput.value.trim(); if(t) { addMsg(t, 'user'); chatInput.value = ''; setTimeout(() => addMsg("✅ Спасибо! Менеджер ответит.", "bot"), 500); } };
+        if (chatInput) chatInput.onkeypress = (e) => { if(e.key === 'Enter' && chatSend) chatSend.click(); };
     }
 
-    function createParticles() { for(let i=0;i<80;i++) { let p = document.createElement('div'); p.className = 'particle'; let s = Math.random()*6+2; p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*15}s;animation-duration:${12+Math.random()*15}s`; document.getElementById('particles').appendChild(p); } }
-    function checkVisibility() { document.querySelectorAll('.fade-up').forEach(el => { if(el.getBoundingClientRect().top < window.innerHeight-80) el.classList.add('visible'); }); }
-    function initScrollTop() { let btn = document.getElementById('scrollTopBtn'); window.onscroll = () => btn.classList.toggle('show', window.scrollY > 300); btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' }); }
-    function initTheme() { let toggle = document.getElementById('themeToggle'); let saved = localStorage.getItem('matoff_theme') || 'dark'; if(saved === 'light') document.body.classList.add('light-theme'); toggle.querySelectorAll('span').forEach(span => { span.classList.toggle('active', span.dataset.theme === saved); span.onclick = () => { let theme = span.dataset.theme; document.body.classList.toggle('light-theme', theme === 'light'); localStorage.setItem('matoff_theme', theme); toggle.querySelectorAll('span').forEach(s => s.classList.remove('active')); span.classList.add('active'); }; }); }
-    function showAdminLogin() { document.getElementById('adminLoginOverlay').style.display = 'flex'; }
-    function hideAdminLogin() { document.getElementById('adminLoginOverlay').style.display = 'none'; }
-    function showAdminPanel() { document.getElementById('adminPanel').classList.add('visible'); }
-    function hideAdminPanel() { document.getElementById('adminPanel').classList.remove('visible'); }
+    function createParticles() { 
+        const particlesContainer = document.getElementById('particles');
+        if (!particlesContainer) return;
+        for(let i=0;i<80;i++) { 
+            let p = document.createElement('div'); 
+            p.className = 'particle'; 
+            let s = Math.random()*6+2; 
+            p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*15}s;animation-duration:${12+Math.random()*15}s`; 
+            particlesContainer.appendChild(p); 
+        } 
+    }
+    
+    function checkVisibility() { 
+        document.querySelectorAll('.fade-up').forEach(el => { 
+            if(el.getBoundingClientRect().top < window.innerHeight-80) el.classList.add('visible'); 
+        }); 
+    }
+    
+    function initScrollTop() { 
+        let btn = document.getElementById('scrollTopBtn'); 
+        if (btn) {
+            window.onscroll = () => btn.classList.toggle('show', window.scrollY > 300); 
+            btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' }); 
+        }
+    }
+    
+    function initTheme() { 
+        let toggle = document.getElementById('themeToggle'); 
+        if (!toggle) return;
+        let saved = localStorage.getItem('matoff_theme') || 'dark'; 
+        if(saved === 'light') document.body.classList.add('light-theme'); 
+        toggle.querySelectorAll('span').forEach(span => { 
+            span.classList.toggle('active', span.dataset.theme === saved); 
+            span.onclick = () => { 
+                let theme = span.dataset.theme; 
+                document.body.classList.toggle('light-theme', theme === 'light'); 
+                localStorage.setItem('matoff_theme', theme); 
+                toggle.querySelectorAll('span').forEach(s => s.classList.remove('active')); 
+                span.classList.add('active'); 
+            }; 
+        }); 
+    }
+    
+    function showAdminLogin() { 
+        const overlay = document.getElementById('adminLoginOverlay');
+        if (overlay) overlay.style.display = 'flex'; 
+    }
+    
+    function hideAdminLogin() { 
+        const overlay = document.getElementById('adminLoginOverlay');
+        if (overlay) overlay.style.display = 'none'; 
+    }
+    
+    function showAdminPanel() { 
+        const panel = document.getElementById('adminPanel');
+        if (panel) panel.classList.add('visible'); 
+    }
+    
+    function hideAdminPanel() { 
+        const panel = document.getElementById('adminPanel');
+        if (panel) panel.classList.remove('visible'); 
+    }
 
-    function renderAll() { renderCounters(); renderServices(); renderBuilds(); renderSteps(); renderAdvantages(); renderSocialBlock(); renderShorts(); renderReviews(); renderPromo(); checkVisibility(); initCalculator(); }
+    function renderAll() { 
+        renderCounters(); 
+        renderServices(); 
+        renderBuilds(); 
+        renderSteps(); 
+        renderAdvantages(); 
+        renderSocialBlock(); 
+        renderShorts(); 
+        renderReviews(); 
+        renderPromo(); 
+        checkVisibility(); 
+        initCalculator(); 
+    }
 
     document.addEventListener('DOMContentLoaded', () => {
-        createParticles(); loadData(); initChat(); initScrollTop(); initTheme();
+        createParticles(); 
+        loadData(); 
+        initChat(); 
+        initScrollTop(); 
+        initTheme();
         window.addEventListener('scroll', checkVisibility);
-        document.getElementById('promoClose').onclick = () => document.getElementById('promoBar').style.display = 'none';
-        document.getElementById('notFoundBtn').onclick = scrollToOrder;
-        document.getElementById('filterGroup').querySelectorAll('.filter-btn').forEach(btn => btn.onclick = function() { document.getElementById('filterGroup').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); currentFilter = this.dataset.filter; renderBuilds(); });
-        document.getElementById('gpuFilterGroup').querySelectorAll('.filter-btn').forEach(btn => btn.onclick = function() { document.getElementById('gpuFilterGroup').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); currentGpuFilter = this.dataset.gpu; renderBuilds(); });
-        document.getElementById('adminLink').onclick = showAdminLogin;
-        document.getElementById('adminLoginBtn').onclick = () => { if(document.getElementById('adminPassword').value === ADMIN_PASSWORD) { hideAdminLogin(); showAdminPanel(); document.getElementById('adminPassword').value = ''; } else alert("Неверный пароль!"); };
-        document.getElementById('adminLoginClose').onclick = hideAdminLogin;
-        document.getElementById('logoutAdminBtn').onclick = hideAdminPanel;
+        
+        const promoClose = document.getElementById('promoClose');
+        if (promoClose) promoClose.onclick = () => {
+            const promoBar = document.getElementById('promoBar');
+            if (promoBar) promoBar.style.display = 'none';
+        };
+        
+        const notFoundBtn = document.getElementById('notFoundBtn');
+        if (notFoundBtn) notFoundBtn.onclick = scrollToOrder;
+        
+        const filterGroup = document.getElementById('filterGroup');
+        if (filterGroup) {
+            filterGroup.querySelectorAll('.filter-btn').forEach(btn => btn.onclick = function() { 
+                filterGroup.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); 
+                this.classList.add('active'); 
+                currentFilter = this.dataset.filter; 
+                renderBuilds(); 
+            });
+        }
+        
+        const gpuFilterGroup = document.getElementById('gpuFilterGroup');
+        if (gpuFilterGroup) {
+            gpuFilterGroup.querySelectorAll('.filter-btn').forEach(btn => btn.onclick = function() { 
+                gpuFilterGroup.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); 
+                this.classList.add('active'); 
+                currentGpuFilter = this.dataset.gpu; 
+                renderBuilds(); 
+            });
+        }
+        
+        const adminLink = document.getElementById('adminLink');
+        if (adminLink) adminLink.onclick = showAdminLogin;
+        
+        const adminLoginBtn = document.getElementById('adminLoginBtn');
+        if (adminLoginBtn) {
+            adminLoginBtn.onclick = () => { 
+                const adminPassword = document.getElementById('adminPassword');
+                if(adminPassword && adminPassword.value === ADMIN_PASSWORD) { 
+                    hideAdminLogin(); 
+                    showAdminPanel(); 
+                    if (adminPassword) adminPassword.value = ''; 
+                } else alert("Неверный пароль!"); 
+            };
+        }
+        
+        const adminLoginClose = document.getElementById('adminLoginClose');
+        if (adminLoginClose) adminLoginClose.onclick = hideAdminLogin;
+        
+        const logoutAdminBtn = document.getElementById('logoutAdminBtn');
+        if (logoutAdminBtn) logoutAdminBtn.onclick = hideAdminPanel;
+        
         let modal = document.getElementById('socialModal');
-        document.getElementById('managerHeaderBtn').onclick = () => modal.style.display = 'flex';
-        document.getElementById('closeModal').onclick = () => modal.style.display = 'none';
-        document.getElementById('modalVk').onclick = () => { window.open(siteData.socials?.vk || "#", '_blank'); modal.style.display = 'none'; };
-        document.getElementById('modalTg').onclick = () => { window.open(siteData.socials?.telegram || "#", '_blank'); modal.style.display = 'none'; };
+        const managerHeaderBtn = document.getElementById('managerHeaderBtn');
+        if (managerHeaderBtn) managerHeaderBtn.onclick = () => { if (modal) modal.style.display = 'flex'; };
+        
+        const closeModal = document.getElementById('closeModal');
+        if (closeModal) closeModal.onclick = () => { if (modal) modal.style.display = 'none'; };
+        
+        const modalVk = document.getElementById('modalVk');
+        if (modalVk) modalVk.onclick = () => { window.open(siteData.socials?.vk || "#", '_blank'); if (modal) modal.style.display = 'none'; };
+        
+        const modalTg = document.getElementById('modalTg');
+        if (modalTg) modalTg.onclick = () => { window.open(siteData.socials?.telegram || "#", '_blank'); if (modal) modal.style.display = 'none'; };
+        
         let contactType = 'phone';
-        document.querySelectorAll('.contact-type-btn').forEach(btn => btn.onclick = function() { document.querySelectorAll('.contact-type-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); contactType = this.dataset.contact; let c = document.getElementById('contactFieldContainer'); if(contactType === 'phone') c.innerHTML = '<input type="tel" id="clientContact" placeholder="Номер телефона" required>'; else if(contactType === 'tg') c.innerHTML = '<input type="text" id="clientContact" placeholder="Ваш Telegram (@username)" required>'; else c.innerHTML = '<input type="text" id="clientContact" placeholder="Ссылка на VK" required>'; });
-        document.getElementById('requestForm').onsubmit = async (e) => { e.preventDefault(); let name = document.getElementById('clientName').value, contact = document.getElementById('clientContact').value, comment = document.getElementById('clientComment').value; if(!name || !contact) { alert("Заполните имя и контакт!"); return; } let btn = e.target.querySelector('button'), orig = btn.textContent; btn.textContent = "Отправка..."; btn.disabled = true; await sendToTelegram(name, contact, contactType, comment); alert(`✅ Заявка принята, ${name}! Менеджер свяжется с вами через ${contactType}.`); e.target.reset(); document.getElementById('contactFieldContainer').innerHTML = '<input type="tel" id="clientContact" placeholder="Номер телефона" required>'; document.querySelector('.contact-type-btn[data-contact="phone"]').classList.add('active'); document.querySelector('.contact-type-btn[data-contact="tg"]').classList.remove('active'); document.querySelector('.contact-type-btn[data-contact="vk"]').classList.remove('active'); contactType = 'phone'; btn.textContent = orig; btn.disabled = false; };
+        document.querySelectorAll('.contact-type-btn').forEach(btn => btn.onclick = function() { 
+            document.querySelectorAll('.contact-type-btn').forEach(b => b.classList.remove('active')); 
+            this.classList.add('active'); 
+            contactType = this.dataset.contact; 
+            let c = document.getElementById('contactFieldContainer'); 
+            if(c) {
+                if(contactType === 'phone') c.innerHTML = '<input type="tel" id="clientContact" placeholder="Номер телефона" required>'; 
+                else if(contactType === 'tg') c.innerHTML = '<input type="text" id="clientContact" placeholder="Ваш Telegram (@username)" required>'; 
+                else c.innerHTML = '<input type="text" id="clientContact" placeholder="Ссылка на VK" required>';
+            }
+        });
+        
+        const requestForm = document.getElementById('requestForm');
+        if (requestForm) {
+            requestForm.onsubmit = async (e) => { 
+                e.preventDefault(); 
+                let name = document.getElementById('clientName').value, 
+                    contact = document.getElementById('clientContact').value, 
+                    comment = document.getElementById('clientComment').value; 
+                if(!name || !contact) { alert("Заполните имя и контакт!"); return; } 
+                let btn = e.target.querySelector('button'), orig = btn.textContent; 
+                btn.textContent = "Отправка..."; 
+                btn.disabled = true; 
+                await sendToTelegram(name, contact, contactType, comment); 
+                alert(`✅ Заявка принята, ${name}! Менеджер свяжется с вами через ${contactType}.`); 
+                e.target.reset(); 
+                const contactField = document.getElementById('contactFieldContainer');
+                if (contactField) contactField.innerHTML = '<input type="tel" id="clientContact" placeholder="Номер телефона" required>'; 
+                const phoneBtn = document.querySelector('.contact-type-btn[data-contact="phone"]');
+                const tgBtn = document.querySelector('.contact-type-btn[data-contact="tg"]');
+                const vkBtn = document.querySelector('.contact-type-btn[data-contact="vk"]');
+                if (phoneBtn) phoneBtn.classList.add('active');
+                if (tgBtn) tgBtn.classList.remove('active');
+                if (vkBtn) vkBtn.classList.remove('active');
+                contactType = 'phone'; 
+                btn.textContent = orig; 
+                btn.disabled = false; 
+            };
+        }
     });
 </script>
 </body>
