@@ -1,5 +1,4 @@
-{
-    "slides": [
+  "slides": [
     {
       "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/slide1.png",
       "title": "Скидка 10% на первую сборку!",
@@ -9,17 +8,17 @@
     },
     {
       "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/slide2.png",
-      "title": "Розыгрыш игровой мышки!",
+      "title": "Розыгрыш игрового ПК",
       "subtitle": "Участвуй и выиграй!",
       "buttonText": "Участвовать",
       "buttonLink": "https://t.me/matoffpctg"
     },
     {
       "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/slide3.png",
-      "title": "Розыгрыш игрового коврика!",
-      "subtitle": "Участвуй и выиграй!",
-      "buttonText": "Участвовать",
-      "buttonLink": "https://t.me/matoffpctg"
+      "title": "Бесплатная консультация",
+      "subtitle": "Поможем выбрать идеальную сборку",
+      "buttonText": "Записаться",
+      "buttonLink": "#order"
     }
   ],
   "services": [
@@ -149,10 +148,22 @@
       "fps": "300+ FPS"
     }
   ],
-  "reviews": [
-    { "name": "Михаил", "text": "Все супер) Рекомендую обратиться в эту компанию!", "image": "https://placehold.co/400x300/2a2a35/9b4dff?text=Фото+ПК" },
-    { "name": "Алексей", "text": "Отличная компьютерная мастерская! Сделали все на высшем уровне.", "image": "https://placehold.co/400x300/2a2a35/9b4dff?text=Фото+ПК" },
-    { "name": "Василиса", "text": "Эти ребята лучшие!! Доступно объяснили принципы сборки. Спасибо!", "image": "https://placehold.co/400x300/2a2a35/9b4dff?text=Фото+ПК" }
+    "reviews": [
+    {
+      "name": "Михаил",
+      "text": "Все супер) Рекомендую обратиться в эту компанию!",
+      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/review1.png"
+    },
+    {
+      "name": "Алексей",
+      "text": "Отличная компьютерная мастерская! Сделали все на высшем уровне.",
+      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/review2.png"
+    },
+    {
+      "name": "Василиса",
+      "text": "Эти ребята лучшие!! Доступно объяснили принципы сборки. Спасибо!",
+      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/review3.png"
+    }
   ],
   "counters": [
     { "number": 528, "label": "Собранных ПК" },
