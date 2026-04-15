@@ -116,11 +116,11 @@
         html { scroll-behavior: smooth; }
         .header { background: var(--header-bg); backdrop-filter: blur(20px); position: sticky; top: 0; border-bottom: 1px solid var(--border-color); z-index: 100; animation: slideDown 0.6s ease-out; }
         @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .header .container { display: flex; justify-content: space-between; align-items: center; padding: 18px 32px; flex-wrap: wrap; gap: 20px; }
+        .header .container { display: flex; justify-content: space-between; align-items: center; padding: 12px 32px; flex-wrap: nowrap;  /* ← ДОБАВИТЬ ЭТО */gap: 15px; }
         .logo { font-family: 'Orbitron', monospace; font-size: 2rem; font-weight: 800; letter-spacing: 1px; }
         .logo-matoff { color: var(--accent-purple); text-shadow: 0 0 15px rgba(155,77,255,0.4); }
         .logo-pc { color: var(--accent-orange); text-shadow: 0 0 15px rgba(230,138,46,0.3); }
-        .nav { display: flex; gap: 32px; flex-wrap: wrap; align-items: center; }
+        .nav { display: flex; gap: 32px; flex-wrap: nowrap; align-items: center; }
         .nav a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: 0.3s; position: relative; padding: 5px 0; font-size: 1rem; }
         .nav a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--accent-purple), var(--accent-orange)); transition: width 0.3s; border-radius: 2px; }
         .nav a:hover::after { width: 100%; }
@@ -394,14 +394,20 @@
             .components-grid {
                 grid-template-columns: 1fr;
             }
+            @media (max-width: 1100px) {
+    .header .container { flex-wrap: wrap; }
+    .nav { flex-wrap: wrap; justify-content: center; }
+    .logo { font-size: 1.4rem; }
+    .nav a { font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 <div class="animated-bg"><div class="hex-grid"></div><div class="particles" id="particles"></div></div>
 <div id="promoBar" class="promo-bar" style="display: none;"><div class="container"><div class="promo-content"><span class="promo-text" id="promoText"></span><span class="promo-timer" id="promoTimer"></span><button class="promo-close" id="promoClose">✕</button></div></div></div>
-<header class="header"><div class="container"><div class="logo"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></div><div class="nav"><a href="#services">Услуги</a><a href="#builds">Сборки</a><a href="components.html">Комплектующие</a><a href="#steps">Этапы</a><a href="#advantages">Преимущества</a><a href="#reviews">Отзывы</a><a href="#order">Заявка</a><a href="cart.html" class="cart-badge">🛒 Корзина <span id="headerCartCount" class="cart-count">0</span></a><div class="theme-toggle" id="themeToggle"><span class="active" data-theme="dark">🌙</span><span data-theme="light">☀️</span></div><div class="manager-wrapper"><button id="managerHeaderBtn" class="manager-header-btn">📱 Связаться</button><div class="online-indicator"><span class="online-dot"></span><span>онлайн</span></div></div></div></div></header>
-<main>
+<header class="header"><div class="container"><div class="logo"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></div><div class="nav"><a href="#services">Услуги</a><a href="#builds">Сборки</a><a href="components.html">Комплектующие</a><a href="#reviews">Отзывы</a><a href="#order">Заявка</a><a href="cart.html" class="cart-badge">🛒 Корзина <span id="headerCartCount" class="cart-count">0</span></a><div class="theme-toggle" id="themeToggle"><span class="active" data-theme="dark">🌙</span><span data-theme="light">☀️</span></div><div class="manager-wrapper"><button id="managerHeaderBtn" class="manager-header-btn">📱 Связаться</button><div class="online-indicator"><span class="online-dot"></span><span>онлайн</span></div></div></div></div></header>
+
+    <main>
     <section class="hero" style="padding: 40px 0 20px 0;">
         <div class="container">
             <div class="hero-slider" id="heroSlider">
@@ -721,16 +727,37 @@
         };
     }
 
-    async function sendToTelegram(name, contact, type, comment) {
-        if (!name || !contact || name === "" || contact === "") return false;
-        let msg = `🆕 НОВАЯ ЗАЯВКА\n\n👤 ${name}\n📞 ${type}: ${contact}\n📝 ${comment || "—"}\n🕐 ${new Date().toLocaleString()}`;
+        async function sendToTelegram(name, contact, type, comment) {
+        if (!name || !contact) return false;
+        
+        let msg = `🆕 НОВАЯ ЗАЯВКА\n\n`;
+        msg += `👤 Имя: ${name}\n`;
+        msg += `📞 Контакт (${type}): ${contact}\n`;
+        msg += `📝 Комментарий: ${comment || "—"}\n`;
+        msg += `🕐 Время: ${new Date().toLocaleString()}`;
+        
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        
         try { 
-            await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, { 
+            const response = await fetch(url, { 
                 method: 'POST', 
                 headers: { 'Content-Type': 'application/json' }, 
-                body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: msg }) 
-            }); 
-            return true; 
+                body: JSON.stringify({ 
+                    chat_id: TELEGRAM_CHAT_ID, 
+                    text: msg,
+                    parse_mode: 'HTML'
+                }) 
+            });
+            
+            const result = await response.json();
+            console.log('Telegram ответ:', result);
+            
+            if (result.ok) {
+                return true;
+            } else {
+                console.error('Ошибка Telegram:', result.description);
+                return false;
+            }
         } catch(e) { 
             console.error("Ошибка отправки:", e);
             return false; 
