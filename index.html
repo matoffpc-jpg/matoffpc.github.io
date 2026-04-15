@@ -632,16 +632,27 @@
         };
     }
 
-    async function sendToTelegram(name, contact, type, comment) {
+        async function sendToTelegram(name, contact, type, comment) {
         if (!name || !contact) return false;
-        const message = `🆕 НОВАЯ ЗАЯВКА%0A%0A👤 ${name}%0A📞 ${type}: ${contact}%0A📝 ${comment || "—"}%0A🕐 ${new Date().toLocaleString()}`;
+        
+        const message = `🆕 НОВАЯ ЗАЯВКА%0A%0A👤 Имя: ${name}%0A📞 Контакт (${type}): ${contact}%0A📝 Комментарий: ${comment || "—"}%0A🕐 ${new Date().toLocaleString()}`;
+        
         const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${message}`;
+        
         try { 
             const response = await fetch(url);
             const result = await response.json();
-            if (result.ok) return true;
-            else return false;
-        } catch(e) { return false; }
+            console.log('Ответ Telegram:', result);
+            
+            if (result.ok) {
+                return true;
+            } else {
+                console.error('Ошибка:', result.description);
+                return false;
+            }
+        } catch(e) { 
+            console.error("Ошибка:", e);
+            return false; 
     }
 
     function initChat() {
