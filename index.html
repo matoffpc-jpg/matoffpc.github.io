@@ -727,43 +727,41 @@
         };
     }
 
-        async function sendToTelegram(name, contact, type, comment) {
-        if (!name || !contact) return false;
+            async function sendToTelegram(name, contact, type, comment) {
+        console.log('🔵 Функция sendToTelegram вызвана');
+        console.log('📝 Данные:', {name, contact, type, comment});
         
-        let msg = `🆕 НОВАЯ ЗАЯВКА\n\n`;
-        msg += `👤 Имя: ${name}\n`;
-        msg += `📞 Контакт (${type}): ${contact}\n`;
-        msg += `📝 Комментарий: ${comment || "—"}\n`;
-        msg += `🕐 Время: ${new Date().toLocaleString()}`;
+        if (!name || !contact) {
+            console.log('❌ Ошибка: пустое имя или контакт');
+            return false;
+        }
         
-        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        const message = `🆕 НОВАЯ ЗАЯВКА%0A%0A👤 ${name}%0A📞 ${type}: ${contact}%0A📝 ${comment || "—"}%0A🕐 ${new Date().toLocaleString()}`;
+        
+        const url = `https://api.telegram.org/bot8787519466:AAFzHmOnPd7FFmEMzBs8c-NM9O8SQcvu0s0/sendMessage?chat_id=1065465753&text=${message}`;
+        
+        console.log('📤 URL запроса:', url);
         
         try { 
-            const response = await fetch(url, { 
-                method: 'POST', 
-                headers: { 'Content-Type': 'application/json' }, 
-                body: JSON.stringify({ 
-                    chat_id: TELEGRAM_CHAT_ID, 
-                    text: msg,
-                    parse_mode: 'HTML'
-                }) 
-            });
+            console.log('📡 Отправляем запрос...');
+            const response = await fetch(url);
+            console.log('📥 Статус ответа:', response.status);
             
             const result = await response.json();
-            console.log('Telegram ответ:', result);
+            console.log('📨 Ответ Telegram:', result);
             
             if (result.ok) {
+                console.log('✅ Успешно! Заявка отправлена в Telegram');
                 return true;
             } else {
-                console.error('Ошибка Telegram:', result.description);
+                console.log('❌ ОШИБКА Telegram:', result.description);
                 return false;
             }
         } catch(e) { 
-            console.error("Ошибка отправки:", e);
+            console.error("❌ ИСКЛЮЧЕНИЕ:", e.message);
             return false; 
         }
     }
-
     function initChat() {
         let messages = JSON.parse(localStorage.getItem('matoff_chat_messages')) || [];
         let chatWindow = document.getElementById('chatWindow'), chatMessages = document.getElementById('chatMessages'), chatInput = document.getElementById('chatInput');
