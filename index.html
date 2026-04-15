@@ -448,7 +448,7 @@
 <div id="chatWindow" class="chat-window"><div class="chat-header"><span>💬 Чат с менеджером</span><button class="chat-close" id="chatClose">×</button></div><div id="chatMessages" class="chat-messages"></div><div class="chat-input-area"><input type="text" id="chatInput" placeholder="Ваше сообщение..."><button id="chatSend">📤</button></div></div>
 
 <script>
-    const TELEGRAM_BOT_TOKEN = "8787519466:AAFzHmOnPd7FFmEMzBs8c-NM9O8SQcvu0s0";
+        const TELEGRAM_BOT_TOKEN = "8787519466:AAFzHmOnPd7FFmEMzBs8c-NM9O8SQcvu0s0";
     const TELEGRAM_CHAT_ID = "1065465753";
     const ADMIN_PASSWORD = "matoff2025";
     let siteData = { builds: [], services: [], counters: [], steps: [], advantages: [], socials: {}, shorts: [], reviews: [], slides: [], promo: {}, components: [] };
@@ -541,7 +541,55 @@
     function renderShorts() { const container = document.getElementById('shortsContainer'); if (container && siteData.shorts && siteData.shorts.length) { container.innerHTML = siteData.shorts.map(sh => `<div class="short-card" onclick="window.open('${sh.url}','_blank')"><img src="${sh.preview}" onerror="this.src='https://placehold.co/280x500?text=Video'"><p>${sh.title}</p></div>`).join(''); } }
     function renderReviews() { const container = document.getElementById('reviewsContainer'); if (container && siteData.reviews && siteData.reviews.length) { container.innerHTML = siteData.reviews.map(r => `<div class="review-card"><img class="review-image" src="${r.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=Фото+ПК'"><strong>⭐ ${r.name}</strong><p>${r.text}</p></div>`).join(''); } }
     function renderSocialBlock() { let s = siteData.socials || {}; let html = ''; if(s.vk) html += `<a href="${s.vk}" target="_blank" class="social-icon vk">📱 VK</a>`; if(s.telegram) html += `<a href="${s.telegram}" target="_blank" class="social-icon tg">💬 Telegram</a>`; if(s.youtube) html += `<a href="${s.youtube}" target="_blank" class="social-icon yt">📺 YouTube</a>`; if(s.tiktok) html += `<a href="${s.tiktok}" target="_blank" class="social-icon tt">🎵 TikTok</a>`; if(s.instagram) html += `<a href="${s.instagram}" target="_blank" class="social-icon ig">📷 Instagram</a>`; const container = document.getElementById('socialIconsContainer'); if (container) container.innerHTML = html; }
-    function renderPromo() { if(siteData.promo && siteData.promo.enabled) { const promoBar = document.getElementById('promoBar'); if (promoBar) { promoBar.style.display = 'block'; const promoText = document.getElementById('promoText'); if (promoText) promoText.textContent = siteData.promo.text; startTimer(siteData.promo.endDate); } } else { const promoBar = document.getElementById('promoBar'); if (promoBar) promoBar.style.display = 'none'; } }
+    
+    // ========== ИСПРАВЛЕННЫЕ ФУНКЦИИ АКЦИЙ ==========
+    let promoInterval;
+    
+    function renderPromo() { 
+        const promoBar = document.getElementById('promoBar');
+        if (!promoBar) return;
+        
+        // Проверяем, есть ли акции в data.json (теперь это массив promos)
+        if (!siteData.promos || siteData.promos.length === 0) {
+            if (promoInterval) clearInterval(promoInterval);
+            promoBar.style.display = 'none';
+            return;
+        }
+        
+        // Фильтруем только включённые акции
+        const activePromos = siteData.promos.filter(p => p.enabled === true);
+        
+        if (activePromos.length === 0) {
+            if (promoInterval) clearInterval(promoInterval);
+            promoBar.style.display = 'none';
+            return;
+        }
+        
+        // Показываем акции по очереди (циклически)
+        if (typeof window.currentPromoIndex === 'undefined') {
+            window.currentPromoIndex = 0;
+        }
+        
+        const currentPromo = activePromos[window.currentPromoIndex % activePromos.length];
+        window.currentPromoIndex++;
+        
+        promoBar.style.display = 'block';
+        const promoText = document.getElementById('promoText');
+        if (promoText) promoText.textContent = currentPromo.text;
+        
+        if (currentPromo.endDate) {
+            startTimer(currentPromo.endDate);
+        }
+    }
+    
+    function startPromoRotation() {
+        if (promoInterval) clearInterval(promoInterval);
+        promoInterval = setInterval(() => {
+            renderPromo();
+        }, 8000); // Меняем каждые 8 секунд
+    }
+    // ========== КОНЕЦ ИСПРАВЛЕННЫХ ФУНКЦИЙ АКЦИЙ ==========
+
     function startTimer(endDate) { if(!endDate) return; let end = new Date(endDate); function update() { let diff = end - new Date(); if(diff <= 0) { const promoBar = document.getElementById('promoBar'); if (promoBar) promoBar.style.display = 'none'; return; } let d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000); const promoTimer = document.getElementById('promoTimer'); if (promoTimer) promoTimer.textContent = `${d}д ${h}ч ${m}м ${s}с`; } update(); setInterval(update, 1000); }
 
     let currentFilter = "all", currentGpuFilter = "all";
@@ -669,6 +717,7 @@
 
     function renderAll() { 
         renderCounters(); renderServices(); renderBuilds(); renderSteps(); renderAdvantages(); renderSocialBlock(); renderShorts(); renderReviews(); renderPromo(); renderComponents(); updateCartCounters();
+        startPromoRotation(); // ЗАПУСКАЕМ РОТАЦИЮ АКЦИЙ
         setTimeout(() => checkVisibility(), 100); initCalculator(); 
     }
 
@@ -735,6 +784,3 @@
             btn.disabled = false; 
         };
     });
-</script>
-</body>
-</html>
