@@ -24,29 +24,25 @@
             --accent-orange: #e68a2e;
             --input-bg: rgba(31, 31, 40, 0.9);
         }
-        body.light-theme {
-            --bg-primary: #f0f2f5;
-            --bg-secondary: rgba(255, 255, 255, 0.95);
-            --text-primary: #1a1a2e;
-            --text-secondary: #4a4a5a;
-            --border-color: rgba(155, 77, 255, 0.35);
-            --card-bg: rgba(255, 255, 255, 0.95);
-            --header-bg: rgba(240, 242, 245, 0.9);
-            --btn-bg: linear-gradient(135deg, #9b4dff, #7c3aed);
-            --btn-shadow: #6d28d9;
-            --price-color: #e68a2e;
-            --input-bg: rgba(255, 255, 255, 0.95);
-        }
         body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .header { background: var(--header-bg); backdrop-filter: blur(10px); position: sticky; top: 0; border-bottom: 1px solid var(--border-color); padding: 15px 0; }
-        .logo { font-family: 'Orbitron', monospace; font-size: 1.5rem; font-weight: 800; text-decoration: none; }
+        
+        .header { background: var(--header-bg); backdrop-filter: blur(10px); position: sticky; top: 0; border-bottom: 1px solid var(--border-color); padding: 12px 0; }
+        .header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .logo { font-family: 'Orbitron', monospace; font-size: 1.5rem; font-weight: 800; white-space: nowrap; }
+        .logo a { text-decoration: none; }
         .logo-matoff { color: var(--accent-purple); }
         .logo-pc { color: var(--accent-orange); }
-        .btn { display: inline-flex; align-items: center; justify-content: center; background: var(--btn-bg); color: white; font-weight: 700; padding: 12px 28px; border-radius: 50px; border: none; cursor: pointer; text-decoration: none; box-shadow: 0 3px 0 var(--btn-shadow); }
+        .nav { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+        .nav a { color: var(--text-secondary); text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
+        .nav a:hover { color: var(--accent-purple); }
+        
+        .btn { display: inline-flex; align-items: center; justify-content: center; background: var(--btn-bg); color: white; font-weight: 700; padding: 12px 24px; border-radius: 50px; border: none; cursor: pointer; text-decoration: none; box-shadow: 0 3px 0 var(--btn-shadow); transition: 0.3s; }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 0 var(--btn-shadow); }
         .btn-outline { background: transparent; border: 2px solid var(--accent-purple); color: var(--accent-purple); box-shadow: none; }
-        .cart-section { padding: 50px 0; }
+        
+        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 30px; text-align: center; }
+        .cart-section { padding: 40px 0; }
         .cart-items { background: var(--card-bg); border-radius: 28px; padding: 25px; margin-bottom: 25px; border: 1px solid var(--border-color); }
         .cart-item { display: flex; gap: 15px; padding: 15px; border-bottom: 1px solid var(--border-color); align-items: center; flex-wrap: wrap; }
         .cart-item-img { width: 80px; height: 80px; object-fit: contain; }
@@ -59,29 +55,49 @@
         .cart-total { text-align: right; padding: 20px; font-size: 1.3rem; font-weight: 700; }
         .cart-total span { color: var(--price-color); font-size: 1.8rem; }
         .empty-cart { text-align: center; padding: 50px; }
+        
         .order-form { background: var(--card-bg); border-radius: 28px; padding: 30px; border: 1px solid var(--border-color); margin-top: 30px; }
-        .order-form h3 { margin-bottom: 20px; }
-        .order-form input, .order-form select, .order-form textarea { width: 100%; padding: 12px 16px; margin-bottom: 15px; background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 28px; }
-        .theme-toggle { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 50px; padding: 4px; cursor: pointer; display: inline-flex; gap: 4px; margin-left: 20px; }
+        .order-form h3 { margin-bottom: 20px; font-family: 'Orbitron', monospace; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .order-form input, .order-form select, .order-form textarea { width: 100%; padding: 12px 16px; background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 28px; font-size: 0.9rem; }
+        .order-form input:focus, .order-form select:focus { outline: none; border-color: var(--accent-purple); }
+        
+        .delivery-price { background: rgba(155,77,255,0.1); border-radius: 16px; padding: 15px; margin: 15px 0; text-align: center; border: 1px solid var(--accent-purple); }
+        .delivery-price span { font-size: 1.5rem; font-weight: 800; color: var(--price-color); }
+        
+        .total-price { font-size: 1.4rem; text-align: right; padding: 15px; border-top: 1px solid var(--border-color); margin-top: 15px; }
+        .total-price span { color: var(--price-color); font-size: 1.8rem; font-weight: 800; }
+        
+        .theme-toggle { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 50px; padding: 4px; display: inline-flex; gap: 4px; margin-left: 15px; }
         .theme-toggle span { padding: 4px 10px; border-radius: 50px; font-size: 0.75rem; cursor: pointer; }
         .theme-toggle .active { background: var(--accent-purple); color: white; }
-        .nav { display: flex; align-items: center; gap: 25px; flex-wrap: wrap; }
-        .nav a { color: var(--text-secondary); text-decoration: none; }
-        .header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        
         footer { text-align: center; padding: 30px; border-top: 1px solid var(--border-color); margin-top: 50px; }
-        @media (max-width: 768px) { .cart-item { flex-direction: column; text-align: center; } .cart-item-quantity { justify-content: center; } }
+        
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            .header .container { flex-direction: column; }
+            .nav { justify-content: center; }
+            .cart-item { flex-direction: column; text-align: center; }
+            .cart-item-quantity { justify-content: center; }
+        }
     </style>
 </head>
 <body>
+
 <header class="header">
     <div class="container">
-        <a href="/" class="logo"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></a>
+        <div class="logo"><a href="/"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></a></div>
         <div class="nav">
-            <a href="/#components">Комплектующие</a>
             <a href="/#services">Услуги</a>
             <a href="/#builds">Сборки</a>
+            <a href="/components.html">Комплектующие</a>
+            <a href="/#reviews">Отзывы</a>
             <a href="/#order">Заявка</a>
-            <div class="theme-toggle" id="themeToggle"><span class="active" data-theme="dark">🌙</span><span data-theme="light">☀️</span></div>
+            <div class="theme-toggle" id="themeToggle">
+                <span class="active" data-theme="dark">🌙</span>
+                <span data-theme="light">☀️</span>
+            </div>
         </div>
     </div>
 </header>
@@ -89,23 +105,46 @@
 <main>
     <section class="cart-section">
         <div class="container">
-            <h1 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">🛒 Корзина</h1>
+            <h1 class="section-title">🛒 Корзина</h1>
             <div id="cartItemsContainer" class="cart-items"></div>
             
             <div id="orderFormContainer" style="display: none;">
                 <div class="order-form">
                     <h3>📋 Оформление заказа</h3>
-                    <input type="text" id="orderFio" placeholder="Ваше ФИО" required>
-                    <input type="tel" id="orderPhone" placeholder="Номер телефона" required>
-                    <input type="text" id="orderCity" placeholder="Город" required>
-                    <select id="orderDelivery">
-                        <option value="СДЭК">СДЭК (до ПВЗ)</option>
-                        <option value="Boxberry">Boxberry</option>
-                        <option value="Почта России">Почта России</option>
-                    </select>
-                    <input type="text" id="orderAddress" placeholder="Адрес ПВЗ (или индекс)">
+                    
+                    <div class="form-row">
+                        <input type="text" id="orderFio" placeholder="Ваше ФИО" required>
+                        <input type="tel" id="orderPhone" placeholder="Номер телефона" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <input type="text" id="orderCity" placeholder="Город" required>
+                        <input type="text" id="orderIndex" placeholder="Почтовый индекс">
+                    </div>
+                    
+                    <input type="text" id="orderAddress" placeholder="Улица, дом, квартира" required>
+                    
+                    <div class="form-row">
+                        <select id="orderDelivery">
+                            <option value="СДЭК">🚚 СДЭК (до ПВЗ)</option>
+                            <option value="Яндекс Доставка">📦 Яндекс Доставка</option>
+                            <option value="Почта России">📮 Почта России</option>
+                        </select>
+                        <input type="text" id="orderPvz" placeholder="Адрес ПВЗ или номер отделения">
+                    </div>
+                    
                     <textarea id="orderComment" rows="2" placeholder="Комментарий к заказу (необязательно)"></textarea>
-                    <button id="submitOrderBtn" class="btn">✅ Подтвердить заказ</button>
+                    
+                    <div class="delivery-price">
+                        🚚 Примерная стоимость доставки: <span id="deliveryCost">0</span> ₽<br>
+                        <small style="font-size: 0.7rem;">* Точную стоимость рассчитает менеджер при подтверждении заказа</small>
+                    </div>
+                    
+                    <div class="total-price">
+                        Итого с доставкой: <span id="totalWithDelivery">0</span> ₽
+                    </div>
+                    
+                    <button id="submitOrderBtn" class="btn" style="width: 100%; margin-top: 20px;">✅ Подтвердить заказ</button>
                 </div>
             </div>
         </div>
@@ -114,7 +153,7 @@
 
 <footer>
     <p>📍 Мастерская в Нижнем Новгороде | Matoff PC — продажа комплектующих</p>
-    <p style="margin-top: 10px; font-size: 12px; opacity: 0.6;">© Matoff PC</p>
+    <p style="margin-top: 10px; font-size: 12px;">© Matoff PC</p>
 </footer>
 
 <script>
@@ -123,6 +162,13 @@
     
     let cart = JSON.parse(localStorage.getItem('matoff_cart')) || [];
     let siteData = { components: [] };
+    
+    // Примерные тарифы доставки
+    const deliveryRates = {
+        'СДЭК': 500,
+        'Яндекс Доставка': 450,
+        'Почта России': 350
+    };
     
     async function loadData() {
         try {
@@ -157,6 +203,25 @@
         }
     }
     
+    function getCartTotal() {
+        return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    }
+    
+    function updateDeliveryAndTotal() {
+        const deliverySelect = document.getElementById('orderDelivery');
+        const deliveryCostSpan = document.getElementById('deliveryCost');
+        const totalSpan = document.getElementById('totalWithDelivery');
+        
+        if (deliverySelect && deliveryCostSpan && totalSpan) {
+            const deliveryType = deliverySelect.value;
+            const deliveryCost = deliveryRates[deliveryType] || 500;
+            const cartTotal = getCartTotal();
+            
+            deliveryCostSpan.textContent = deliveryCost;
+            totalSpan.textContent = (cartTotal + deliveryCost).toLocaleString();
+        }
+    }
+    
     function renderCartPage() {
         const container = document.getElementById('cartItemsContainer');
         const orderFormContainer = document.getElementById('orderFormContainer');
@@ -167,7 +232,7 @@
             container.innerHTML = `
                 <div class="empty-cart">
                     <h3>🛒 Корзина пуста</h3>
-                    <p>Добавьте товары из <a href="/#components" style="color:var(--accent-purple);">каталога комплектующих</a></p>
+                    <p>Добавьте товары из <a href="/components.html" style="color:var(--accent-purple);">каталога комплектующих</a></p>
                     <a href="/" class="btn" style="margin-top: 20px;">На главную</a>
                 </div>
             `;
@@ -175,10 +240,10 @@
             return;
         }
         
-        let total = 0;
+        let total = getCartTotal();
+        
         container.innerHTML = cart.map(item => {
             const itemTotal = item.price * item.quantity;
-            total += itemTotal;
             return `
                 <div class="cart-item" data-id="${item.id}">
                     <img class="cart-item-img" src="${item.image}" onerror="this.src='https://placehold.co/80x80/2a2a35/9b4dff?text=PC'">
@@ -198,12 +263,16 @@
         
         container.innerHTML += `
             <div class="cart-total">
-                ИТОГО: <span>${total.toLocaleString()} ₽</span>
+                Товаров на сумму: <span>${total.toLocaleString()} ₽</span>
             </div>
         `;
         
         if (orderFormContainer) orderFormContainer.style.display = 'block';
         
+        // Обновляем доставку и итог
+        updateDeliveryAndTotal();
+        
+        // Обработчики для кнопок в корзине
         document.querySelectorAll('.cart-qty-minus').forEach(btn => {
             btn.onclick = () => updateQuantity(parseInt(btn.dataset.id), -1);
         });
@@ -213,56 +282,74 @@
         document.querySelectorAll('.cart-item-remove').forEach(btn => {
             btn.onclick = () => removeFromCart(parseInt(btn.dataset.id));
         });
+        
+        // Обработчик изменения способа доставки
+        const deliverySelect = document.getElementById('orderDelivery');
+        if (deliverySelect) {
+            deliverySelect.onchange = updateDeliveryAndTotal;
+        }
     }
     
     async function submitOrder() {
         const fio = document.getElementById('orderFio')?.value.trim();
         const phone = document.getElementById('orderPhone')?.value.trim();
         const city = document.getElementById('orderCity')?.value.trim();
-        const delivery = document.getElementById('orderDelivery')?.value;
+        const index = document.getElementById('orderIndex')?.value.trim();
         const address = document.getElementById('orderAddress')?.value.trim();
+        const delivery = document.getElementById('orderDelivery')?.value;
+        const pvz = document.getElementById('orderPvz')?.value.trim();
         const comment = document.getElementById('orderComment')?.value.trim();
         
-        if (!fio || !phone || !city) {
-            alert('Заполните ФИО, телефон и город!');
+        if (!fio || !phone || !city || !address) {
+            alert('Заполните ФИО, телефон, город и адрес!');
             return;
         }
+        
+        const cartTotal = getCartTotal();
+        const deliveryCost = deliveryRates[delivery] || 500;
+        const total = cartTotal + deliveryCost;
         
         let msg = `🛍️ НОВЫЙ ЗАКАЗ КОМПЛЕКТУЮЩИХ\n\n`;
         msg += `👤 ФИО: ${fio}\n`;
         msg += `📞 Телефон: ${phone}\n`;
         msg += `🏙️ Город: ${city}\n`;
+        if (index) msg += `📮 Индекс: ${index}\n`;
+        msg += `📍 Адрес: ${address}\n`;
         msg += `📦 ТК: ${delivery}\n`;
-        if (address) msg += `📍 Адрес: ${address}\n`;
+        if (pvz) msg += `🏢 ПВЗ/отделение: ${pvz}\n`;
         if (comment) msg += `💬 Комментарий: ${comment}\n`;
         msg += `\n📋 ТОВАРЫ:\n`;
         
-        let total = 0;
         cart.forEach(item => {
             const itemTotal = item.price * item.quantity;
-            total += itemTotal;
             msg += `• ${item.name} x${item.quantity} = ${itemTotal.toLocaleString()} ₽\n`;
         });
-        msg += `\n💰 ИТОГО: ${total.toLocaleString()} ₽\n`;
+        
+        msg += `\n💰 Стоимость товаров: ${cartTotal.toLocaleString()} ₽\n`;
+        msg += `🚚 Доставка (${delivery}): ${deliveryCost.toLocaleString()} ₽\n`;
+        msg += `💵 ИТОГО К ОПЛАТЕ: ${total.toLocaleString()} ₽\n`;
         msg += `\n🕐 ${new Date().toLocaleString()}`;
         
         const btn = document.getElementById('submitOrderBtn');
         const originalText = btn.textContent;
-        btn.textContent = 'Отправка...';
+        btn.textContent = '⏳ Отправка...';
         btn.disabled = true;
         
         try {
-            await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: msg })
-            });
-            alert('✅ Заказ отправлен! Менеджер свяжется с вами для подтверждения.');
-            localStorage.removeItem('matoff_cart');
-            cart = [];
-            renderCartPage();
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${encodeURIComponent(msg)}`;
+            const response = await fetch(url);
+            const result = await response.json();
+            
+            if (result.ok) {
+                alert('✅ Заказ отправлен! Менеджер свяжется с вами для подтверждения.');
+                localStorage.removeItem('matoff_cart');
+                cart = [];
+                renderCartPage();
+            } else {
+                alert('❌ Ошибка отправки. Пожалуйста, напишите нам в Telegram: @matoffpctg');
+            }
         } catch(e) {
-            alert('❌ Ошибка отправки. Попробуйте позже или напишите в Telegram.');
+            alert('❌ Ошибка отправки. Пожалуйста, напишите нам в Telegram: @matoffpctg');
         } finally {
             btn.textContent = originalText;
             btn.disabled = false;
