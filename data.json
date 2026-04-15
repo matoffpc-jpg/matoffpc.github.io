@@ -159,8 +159,32 @@
     { "number": 1043, "label": "Довольных клиентов" },
     { "number": 4, "label": "Года на рынке" }
   ],
-  "promo": { "text": "🎁 Скидка 10% на первую сборку!", "endDate": "2026-12-31", "enabled": true },
-  "socials": {
+  "promos": [
+  {
+    "text": "🎁 Скидка 10% на первую сборку!",
+    "endDate": "2026-12-31",
+    "enabled": true,
+    "priority": 1
+  },
+  {
+    "text": "🔥 Бесплатная доставка при заказе от 50 000 ₽",
+    "endDate": "2026-06-30",
+    "enabled": true,
+    "priority": 2
+  },
+  {
+    "text": "💫 Трейд-ин: скидка до 90% на новую технику",
+    "endDate": "2026-12-31",
+    "enabled": true,
+    "priority": 3
+  },
+  {
+    "text": "🎮 При заказе игрового ПК — игровая мышь в подарок!",
+    "endDate": "2026-05-01",
+    "enabled": true,
+    "priority": 4
+  }
+]
     "vk": "https://vk.com/matoffpc",
     "telegram": "https://t.me/matoffpctg",
     "youtube": "https://youtube.com/@matoffpc",
