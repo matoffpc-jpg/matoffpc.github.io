@@ -16,7 +16,6 @@
             --border-color: rgba(155, 77, 255, 0.25);
             --card-bg: rgba(22, 22, 28, 0.85);
             --header-bg: rgba(10, 10, 15, 0.85);
-            --promo-bg: linear-gradient(135deg, #9b4dff, #7c3aed);
             --btn-bg: linear-gradient(135deg, #9b4dff, #7c3aed);
             --btn-shadow: #4a1d8a;
             --price-color: #ffaa66;
@@ -39,7 +38,6 @@
         
         .btn { display: inline-flex; align-items: center; justify-content: center; background: var(--btn-bg); color: white; font-weight: 700; padding: 12px 24px; border-radius: 50px; border: none; cursor: pointer; text-decoration: none; box-shadow: 0 3px 0 var(--btn-shadow); transition: 0.3s; }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 0 var(--btn-shadow); }
-        .btn-outline { background: transparent; border: 2px solid var(--accent-purple); color: var(--accent-purple); box-shadow: none; }
         
         .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 30px; text-align: center; }
         .cart-section { padding: 40px 0; }
@@ -118,11 +116,14 @@
                     </div>
                     
                     <div class="form-row">
+                        <input type="text" id="orderTg" placeholder="Telegram (@username или номер телефона)" required>
                         <input type="text" id="orderCity" placeholder="Город" required>
-                        <input type="text" id="orderIndex" placeholder="Почтовый индекс">
                     </div>
                     
-                    <input type="text" id="orderAddress" placeholder="Улица, дом, квартира" required>
+                    <div class="form-row">
+                        <input type="text" id="orderIndex" placeholder="Почтовый индекс">
+                        <input type="text" id="orderAddress" placeholder="Улица, дом, квартира" required>
+                    </div>
                     
                     <div class="form-row">
                         <select id="orderDelivery">
@@ -163,7 +164,6 @@
     let cart = JSON.parse(localStorage.getItem('matoff_cart')) || [];
     let siteData = { components: [] };
     
-    // Примерные тарифы доставки
     const deliveryRates = {
         'СДЭК': 500,
         'Яндекс Доставка': 450,
@@ -243,7 +243,6 @@
         let total = getCartTotal();
         
         container.innerHTML = cart.map(item => {
-            const itemTotal = item.price * item.quantity;
             return `
                 <div class="cart-item" data-id="${item.id}">
                     <img class="cart-item-img" src="${item.image}" onerror="this.src='https://placehold.co/80x80/2a2a35/9b4dff?text=PC'">
@@ -269,10 +268,8 @@
         
         if (orderFormContainer) orderFormContainer.style.display = 'block';
         
-        // Обновляем доставку и итог
         updateDeliveryAndTotal();
         
-        // Обработчики для кнопок в корзине
         document.querySelectorAll('.cart-qty-minus').forEach(btn => {
             btn.onclick = () => updateQuantity(parseInt(btn.dataset.id), -1);
         });
@@ -283,7 +280,6 @@
             btn.onclick = () => removeFromCart(parseInt(btn.dataset.id));
         });
         
-        // Обработчик изменения способа доставки
         const deliverySelect = document.getElementById('orderDelivery');
         if (deliverySelect) {
             deliverySelect.onchange = updateDeliveryAndTotal;
@@ -293,6 +289,7 @@
     async function submitOrder() {
         const fio = document.getElementById('orderFio')?.value.trim();
         const phone = document.getElementById('orderPhone')?.value.trim();
+        const tg = document.getElementById('orderTg')?.value.trim();
         const city = document.getElementById('orderCity')?.value.trim();
         const index = document.getElementById('orderIndex')?.value.trim();
         const address = document.getElementById('orderAddress')?.value.trim();
@@ -300,8 +297,8 @@
         const pvz = document.getElementById('orderPvz')?.value.trim();
         const comment = document.getElementById('orderComment')?.value.trim();
         
-        if (!fio || !phone || !city || !address) {
-            alert('Заполните ФИО, телефон, город и адрес!');
+        if (!fio || !phone || !tg || !city || !address) {
+            alert('Заполните все обязательные поля: ФИО, телефон, Telegram, город и адрес!');
             return;
         }
         
@@ -312,6 +309,7 @@
         let msg = `🛍️ НОВЫЙ ЗАКАЗ КОМПЛЕКТУЮЩИХ\n\n`;
         msg += `👤 ФИО: ${fio}\n`;
         msg += `📞 Телефон: ${phone}\n`;
+        msg += `💬 Telegram: ${tg}\n`;
         msg += `🏙️ Город: ${city}\n`;
         if (index) msg += `📮 Индекс: ${index}\n`;
         msg += `📍 Адрес: ${address}\n`;
@@ -341,7 +339,7 @@
             const result = await response.json();
             
             if (result.ok) {
-                alert('✅ Заказ отправлен! Менеджер свяжется с вами для подтверждения.');
+                alert('✅ Заказ отправлен! Менеджер свяжется с вами в Telegram.');
                 localStorage.removeItem('matoff_cart');
                 cart = [];
                 renderCartPage();
