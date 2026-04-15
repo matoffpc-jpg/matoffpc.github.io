@@ -160,31 +160,32 @@
     { "number": 4, "label": "Года на рынке" }
   ],
   "promos": [
-  {
-    "text": "🎁 Скидка 10% на первую сборку!",
-    "endDate": "2026-12-31",
-    "enabled": true,
-    "priority": 1
-  },
-  {
-    "text": "🔥 Бесплатная доставка при заказе от 50 000 ₽",
-    "endDate": "2026-06-30",
-    "enabled": true,
-    "priority": 2
-  },
-  {
-    "text": "💫 Трейд-ин: скидка до 90% на новую технику",
-    "endDate": "2026-12-31",
-    "enabled": true,
-    "priority": 3
-  },
-  {
-    "text": "🎮 При заказе игрового ПК — игровая мышь в подарок!",
-    "endDate": "2026-05-01",
-    "enabled": true,
-    "priority": 4
-  }
-]
+    {
+      "text": "🎁 Скидка 10% на первую сборку!",
+      "endDate": "2026-12-31",
+      "enabled": true,
+      "priority": 1
+    },
+    {
+      "text": "🔥 Бесплатная доставка при заказе от 50 000 ₽",
+      "endDate": "2026-06-30",
+      "enabled": true,
+      "priority": 2
+    },
+    {
+      "text": "💫 Трейд-ин: скидка до 90% на новую технику",
+      "endDate": "2026-12-31",
+      "enabled": true,
+      "priority": 3
+    },
+    {
+      "text": "🎮 При заказе игрового ПК — игровая мышь в подарок!",
+      "endDate": "2026-05-01",
+      "enabled": true,
+      "priority": 4
+    }
+  ],
+  "socials": {
     "vk": "https://vk.com/matoffpc",
     "telegram": "https://t.me/matoffpctg",
     "youtube": "https://youtube.com/@matoffpc",
@@ -208,8 +209,7 @@
     { "title": "Обзор M.Master", "url": "https://www.youtube.com/shorts/SXHMnicI6Pg", "preview": "https://img.youtube.com/vi/SXHMnicI6Pg/hqdefault.jpg" },
     { "title": "Как мы собираем", "url": "https://www.youtube.com/shorts/7Hxg2K5CQ6A", "preview": "https://img.youtube.com/vi/7Hxg2K5CQ6A/hqdefault.jpg" },
     { "title": "Советы по апгрейду", "url": "https://www.youtube.com/shorts/1ExLJyKc-1E", "preview": "https://img.youtube.com/vi/1ExLJyKc-1E/hqdefault.jpg" }
-  ]
-,
+  ],
   "components": [
     {
       "id": 1,
