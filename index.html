@@ -722,14 +722,18 @@
         document.getElementById('filterGroup').querySelectorAll('.filter-btn').forEach(btn => btn.onclick = function() { document.getElementById('filterGroup').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); currentFilter = this.dataset.filter; renderBuilds(); });
         document.getElementById('gpuFilterGroup').querySelectorAll('.filter-btn').forEach(btn => btn.onclick = function() { document.getElementById('gpuFilterGroup').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); currentGpuFilter = this.dataset.gpu; renderBuilds(); });
         
+                // Фильтры для комплектующих
         const componentFilters = document.querySelectorAll('#componentFilters .filter-btn');
-        componentFilters.forEach(btn => {
-            btn.onclick = function() {
-                componentFilters.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                renderComponents();
-            };
-        });
+        if (componentFilters.length > 0) {
+            componentFilters.forEach(btn => {
+                btn.onclick = function(e) {
+                    e.preventDefault();
+                    componentFilters.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    renderComponents();
+                };
+            });
+        }
         
         document.getElementById('adminLink').onclick = showAdminLogin;
         document.getElementById('adminLoginBtn').onclick = () => { const adminPassword = document.getElementById('adminPassword'); if(adminPassword && adminPassword.value === ADMIN_PASSWORD) { hideAdminLogin(); showAdminPanel(); if (adminPassword) adminPassword.value = ''; } else alert("Неверный пароль!"); };
