@@ -162,25 +162,25 @@
   "promos": [
     {
       "text": "🎁 Скидка 10% на первую сборку!",
-      "endDate": "2026-12-31",
+      "endDate": "2026-06-05",
       "enabled": true,
       "priority": 1
     },
     {
       "text": "🔥 Бесплатная доставка при заказе от 50 000 ₽",
-      "endDate": "2026-06-30",
+      "endDate": "2026-06-05",
       "enabled": true,
       "priority": 2
     },
     {
       "text": "💫 Трейд-ин: скидка до 90% на новую технику",
-      "endDate": "2026-12-31",
+      "endDate": "2026-06-01",
       "enabled": true,
       "priority": 3
     },
     {
       "text": "🎮 При заказе игрового ПК — игровая мышь в подарок!",
-      "endDate": "2026-05-01",
+      "endDate": "2026-06-05",
       "enabled": true,
       "priority": 4
     }
@@ -206,18 +206,18 @@
     { "name": "Сертифицированные компоненты", "desc": "Только оригинальные комплектующие Intel, AMD, NVIDIA." }
   ],
   "shorts": [
-    { "title": "Обзор M.Master", "url": "https://www.youtube.com/shorts/SXHMnicI6Pg", "preview": "https://img.youtube.com/vi/SXHMnicI6Pg/hqdefault.jpg" },
-    { "title": "Как мы собираем", "url": "https://www.youtube.com/shorts/7Hxg2K5CQ6A", "preview": "https://img.youtube.com/vi/7Hxg2K5CQ6A/hqdefault.jpg" },
-    { "title": "Советы по апгрейду", "url": "https://www.youtube.com/shorts/1ExLJyKc-1E", "preview": "https://img.youtube.com/vi/1ExLJyKc-1E/hqdefault.jpg" }
+    { "title": "Сборка мечты за 120к", "url": "https://www.youtube.com/shorts/BISoehEIhxU", "preview": "https://img.youtube.com/vi/BISoehEIhxU/maxresdefault.jpg" },
+    { "title": "Бюджетный игровой ПК для игр", "url": "https://www.youtube.com/shorts/VkUjAOALVeU", "preview": "https://img.youtube.com/vi/VkUjAOALVeU/maxresdefault.jpg" },
+    { "title": "Как обслужить и почистить ПК", "url": "https://www.youtube.com/shorts/8cFKlPablbo", "preview": "https://img.youtube.com/vi/8cFKlPablbo/maxresdefault.jpg" }
   ],
   "components": [
     {
       "id": 1,
       "category": "gpu",
       "categoryName": "Видеокарты",
-      "name": "NVIDIA GeForce RTX 3060 12GB",
-      "price": 25000,
-      "priceText": "25 000 ₽",
+      "name": "Palit Jetstream RTX 3070 8GB",
+      "price": 24990,
+      "priceText": "24 990 ₽",
       "condition": "Б/У",
       "conditionBadge": "good",
       "description": "Отличное состояние, использовалась для игр, без майнинга",
@@ -228,12 +228,12 @@
       "id": 2,
       "category": "gpu",
       "categoryName": "Видеокарты",
-      "name": "NVIDIA GeForce RTX 3070 Ti 8GB",
-      "price": 38000,
-      "priceText": "38 000 ₽",
+      "name": "Palit Gaming Pro RTX 3070 Ti 8GB",
+      "price": 25990,
+      "priceText": "25 990 ₽",
       "condition": "Б/У",
-      "conditionBadge": "excellent",
-      "description": "Идеальное состояние, оригинальная коробка, чек",
+      "conditionBadge": "good",
+      "description": "Отличное состояние, использовалась для игр, без майнинга",
       "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3070ti.jpg",
       "inStock": true
     },
@@ -241,12 +241,12 @@
       "id": 3,
       "category": "cpu",
       "categoryName": "Процессоры",
-      "name": "AMD Ryzen 5 5600",
-      "price": 9000,
-      "priceText": "9 000 ₽",
-      "condition": "Новый",
-      "conditionBadge": "new",
-      "description": "В заводской упаковке, не вскрывался, гарантия",
+      "name": "AMD Ryzen 9 9900x",
+      "price": 26990,
+      "priceText": "26 990 ₽",
+      "condition": "Б/У",
+      "conditionBadge": "good",
+      "description": "Отличное состояние, использовался для игр",
       "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/r5_5600.jpg",
       "inStock": true
     },
