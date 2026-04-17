@@ -301,60 +301,91 @@
         .component-desc { font-size: 0.7rem; color: var(--text-secondary); margin: 6px 0; line-height: 1.3; flex: 1; }
         .component-card .btn-add-to-cart { margin-top: 10px; width: 100%; padding: 8px; font-size: 0.8rem; }
         
-        /* Стили для блока "Команда" */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
+               /* Стили для блока "Команда" - один квадрат */
+        .team-single {
+            display: flex;
+            justify-content: center;
             margin: 40px 0;
         }
-        .team-card {
+        .team-card-single {
+            max-width: 550px;
+            width: 100%;
             background: var(--card-bg);
             backdrop-filter: blur(10px);
-            border-radius: 28px;
-            padding: 25px 20px;
+            border-radius: 32px;
+            padding: 35px 30px;
             text-align: center;
             border: 1px solid var(--border-color);
             transition: all 0.3s;
         }
-        .team-card:hover {
+        .team-card-single:hover {
             border-color: var(--accent-purple);
             transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(155,77,255,0.2);
+            box-shadow: 0 0 25px rgba(155,77,255,0.2);
         }
-        .team-avatar {
-            font-size: 3rem;
+        .team-avatar-single {
+            font-size: 4rem;
             margin-bottom: 15px;
         }
-        .team-card h3 {
+        .team-card-single h3 {
             font-family: 'Orbitron', monospace;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: var(--text-primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
         }
-        .team-role {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--accent-purple);
-            margin-bottom: 10px;
+        .team-roles-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
         }
-        .team-card p {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            line-height: 1.4;
-        }
-        .team-footer {
-            text-align: center;
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(155,77,255,0.1);
+        .team-role-item {
+            background: rgba(155,77,255,0.15);
+            border: 1px solid rgba(155,77,255,0.3);
             border-radius: 50px;
-            border: 1px solid var(--accent-purple);
-            font-size: 1rem;
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            font-weight: 500;
             color: var(--text-primary);
+            transition: all 0.2s;
         }
-        .team-footer strong {
+        .team-role-item:hover {
+            background: rgba(155,77,255,0.3);
+            transform: translateY(-2px);
+        }
+        .team-footer-single {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(155,77,255,0.08);
+            border-radius: 40px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        .team-footer-single strong {
             color: var(--accent-purple);
+        }
+        
+        @media (max-width: 768px) {
+            .team-card-single {
+                padding: 25px 20px;
+            }
+            .team-avatar-single {
+                font-size: 3rem;
+            }
+            .team-card-single h3 {
+                font-size: 1.2rem;
+            }
+            .team-role-item {
+                padding: 5px 12px;
+                font-size: 0.75rem;
+            }
+            .team-footer-single {
+                font-size: 0.8rem;
+            }
         }
         
         @media (max-width: 1000px) {
@@ -506,51 +537,22 @@
     <section id="team">
         <div class="container">
             <h2 class="section-title fade-up">Кто <span>работает</span> над проектом</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-avatar">🚀</div>
-                    <h3>Александр</h3>
-                    <div class="team-role">Основатель</div>
-                    <p>Генератор идей, стратег, ответственность за всё</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-avatar">🔧</div>
-                    <h3>Александр</h3>
-                    <div class="team-role">Сборщик ПК</div>
-                    <p>Идеальный кабель-менеджмент, стресс-тесты, настройка</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-avatar">🚚</div>
-                    <h3>Александр</h3>
-                    <div class="team-role">Курьер</div>
-                    <p>Бережная доставка по Нижнему Новгороду</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-avatar">🎬</div>
-                    <h3>Александр</h3>
-                    <div class="team-role">Монтажёр</div>
-                    <p>Создаю видео-обзоры и shorts для YouTube/TikTok</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-avatar">📞</div>
-                    <h3>Александр</h3>
-                    <div class="team-role">Менеджер</div>
-                    <p>Отвечаю на звонки, заявки, консультирую клиентов</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-avatar">📱</div>
-                    <h3>Александр</h3>
-                    <div class="team-role">SMM-менеджер</div>
-                    <p>Веду Telegram, TikTok, VK, YouTube</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-avatar">💰</div>
-                    <h3>Александр</h3>
-                    <div class="team-role">Бухгалтер</div>
-                    <p>Считаю налоги, веду расходы и доходы</p>
+            <div class="team-single">
+                <div class="team-card-single">
+                    <div class="team-avatar-single">🧑‍💻</div>
+                    <h3>Матвей (Matrff)</h3>
+                    <div class="team-roles-list">
+                        <div class="team-role-item">🚀 Основатель</div>
+                        <div class="team-role-item">🔧 Сборщик ПК</div>
+                        <div class="team-role-item">🚚 Курьер</div>
+                        <div class="team-role-item">🎬 Монтажёр</div>
+                        <div class="team-role-item">📞 Менеджер</div>
+                        <div class="team-role-item">📱 SMM-менеджер</div>
+                        <div class="team-role-item">💰 Бухгалтер</div>
+                    </div>
+                    <p class="team-footer-single">🤝 <strong>Один человек</strong>, который любит своё дело и делает его качественно!</p>
                 </div>
             </div>
-            <p class="team-footer">🤝 <strong>Спойлер:</strong> всё это — <strong>один человек</strong>, который любит своё дело и делает его качественно!</p>
         </div>
     </section>
     
